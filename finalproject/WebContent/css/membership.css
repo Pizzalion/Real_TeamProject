@@ -1,0 +1,132 @@
+@font-face {
+	font-family: 'Nanum Gothic';
+	font-style: normal;
+	font-weight:800;
+	src:url('/com_member/fonts/NanumGothic/NanumGothic-Regular.eot');
+	src:url('/com_member/fonts/NanumGothic/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'), url('/com_member/fonts/NanumGothic/NanumGothic-Regular.woff2') format('woff2'), url('/com_member/fonts/NanumGothic/NanumGothic-Regular.woff') format('woff'), url('/com_member/fonts/NanumGothic/NanumGothic-Regular.ttf') format('truetype');
+	}
+@font-face {
+	font-family:'Nanum Gothic Bold';
+	font-style:normal;
+	font-weight:700;
+	src:url('/com_member/fonts/NanumGothic/NanumGothic-Bold.eot');
+	src:url('/com_member/fonts/NanumGothic/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'), url('/com_member/fonts/NanumGothic/NanumGothic-Bold.woff2') format('woff2'), url('/com_member/fonts/NanumGothic/NanumGothic-Bold.woff') format('woff'), url('/com_member/fonts/NanumGothic/NanumGothic-Bold.ttf') format('truetype');
+	}
+
+body { margin:0; padding:0; font-family:Malgun Gothic, ¸¼Àº °íµñ, Dotum, µ¸¿ò, Gulim, ±¼¸²; }
+a { text-decoration:none; color:inherit; }
+ul, li { margin:0; padding:0; list-style-type:none; }
+img { border:0; }
+.over-h { overflow:hidden; }
+
+#header { float:left; width:100%; min-width:554px; height:31px; background-color:#ffffff; border-bottom:1px solid #e6e6e6; }
+#header ul { margin:0 auto; width:356px; height:31px; border-left:1px solid #e6e6e6; font-size:12px; color:#3b3b3b; text-align:center; line-height:31px; }
+#header ul li { float:left; width:88px; height:31px; border-right:1px solid #e6e6e6; }
+
+#footer { float:left; width:100%; min-width:554px; background-color:#f5f6f7; }
+#footer span.menu { display:block; float:left; width:554px; font-size:12px; color:#565656; text-align:center; }
+#footer span.menu span.line { color:#dddddd; padding:0 10px; }
+#footer span.st-footer-1 { float:left; width:554px; font-size:12px; color:#b4b4b4; text-align:center; line-height:20px; }
+
+#content { float:left; width:100%; min-width:554px; background-color:#f5f6f7; }
+#content table { width:100%; }
+#content table caption { font-size:0; line-height:0; height:0; }
+#content table td { padding:10px 0; vertical-align:middle; }
+#content table input[type=text] { float:left; height:35px; line-height:35px; padding:0 4px; border:none; font-family:Malgun Gothic, ¸¼Àº °íµñ, Dotum, µ¸¿ò, Gulim, ±¼¸²; font-size:14px; background-color:#ffffff; color:#252525; border:1px solid #d9d9d9; }
+#content table input[type=password] { float:left; height:35px; line-height:35px; padding:0 4px; border:none; font-family:Malgun Gothic, ¸¼Àº °íµñ, Dotum, µ¸¿ò, Gulim, ±¼¸²; font-size:14px; background-color:#ffffff; color:#252525; border:1px solid #d9d9d9; }
+#content table select { display:block; float:left; height:37px; font-family:Malgun Gothic, ¸¼Àº °íµñ, Dotum, µ¸¿ò, Gulim, ±¼¸²; font-size:14px; background-color:#ffffff; color:#252525; border:1px solid #d9d9d9; }
+#content table select { height:auto; padding:7px 0;\0/ie8+9;}
+#content table input[type=radio] { position:absolute; left:0; top:0; z-index:-1; }
+#content table input[type=checkbox] { vertical-align:middle; }
+#content table span.pwcheck { display:block; clear:both; float:left; padding-top:5px; width:100%; font-size:12px; color:#ff0000; }
+
+#content table .ip_id, #content table .ip_pw { width:534px; }
+#content table .ip_name { float:left; display:block; width:534px; margin-right:10px; }
+#content table .ip_birth1 { float:left; display:block; width:120px; margin-right:10px; }
+#content table .ip_birth2 { float:left; display:block; width:100px; margin-right:10px; }
+#content table .ip_sex { display:block; float:left; margin-top:5px; padding-left:35px; width:50px; height:26px; background-image:url(/com_member/img/radio.png); background-repeat:no-repeat; background-position:left top; font-size:16px; color:#202020; line-height:26px; position:relative; }
+#content table .ip_sex_on { display:block; float:left; margin-top:5px; padding-left:35px; width:50px; height:26px; background-image:url(/com_member/img/radio_on.png); background-repeat:no-repeat; background-position:left top; font-size:16px; color:#202020; line-height:26px; position:relative; }
+#content table .ip_hp { float:left; display:block; width:80px; }
+#content table span.flag { display:block; float:left; width:20px; font-size:14px; color:#777676; text-align:center; line-height:37px; }
+#content table .ip_email { float:left; display:block; width:180px; }
+#content table .ip_domain { float:left; display:block; width:165px; }
+#content table .ipsend { display:block; margin-left:10px; float:left; font-size:12px; color:#777676; line-height:37px; }
+#content table a.confirm { display:block; margin-left:17px; float:left; width:70px; height:37px; background-color:#5d5d5d; font-size:14px; color:#ffffff; text-align:center; line-height:37px; }
+#content table .ip_area { float:right; display:block; width:180px; }
+#content table .ip_etc { margin-right:10px; }
+#content table .ip_day { float:left; display:block; width:80px; }
+#content table .ip_duo { float:left; display:block; width:100px; margin-right:10px; }
+
+#content table .notice-1 { color:#aeaeae; font-size:12px; line-height:20px; padding-top:5px; padding-bottom:35px; border-bottom:1px solid #d8d8d8; }
+#content table .ip_agree-1 { font-size:14px; color:#252525; padding-top:25px; }
+#content table .ip_agree-2 { font-size:12px; color:#252525; padding-top:5px; }
+#content table .ip_agree-3 { font-size:12px; color:#252525; padding-top:5px; padding-bottom:35px; border-bottom:1px solid #d8d8d8; }
+#content table .td_submit { padding:0; padding-top:25px; }
+#content table .ip_agree-2 .box, #content table .ip_agree-3 .box { display:block; float:left; width:100%; }
+#content table .ip_textarea { float:left; margin-top:10px; padding:5px; width:542px; height:48px; overflow-y:auto; border:1px solid #cdcdcd; font-size:12px; color:#a9a9a9; line-height:20px; background-color:#ffffff; }
+#content table .ip_duo_check { float:left; width:100%; padding-top:20px; }
+
+#content table.e-step-1 { padding-top:10px; }
+#content table.e-step-1 td { padding:0; }
+#content table.e-step-1 .last { padding:30px 0; border-bottom:1px solid #d8d8d8; }
+#content table.e-step-1 td span.notice-1 { display:block; float:left; padding:20px 0; width:552px; background-color:#ffffff;  border:1px solid #e5e5e5; font-size:16px; color:#606060; text-align:center; line-height:20px; }
+#content table.e-step-1 td span.notice-1 span { color:#1d1d1d; font-weight:bold; }
+#content table.e-step-1 td span.notice-2 { display:block; float:left; width:554px; font-size:12px; color:#8c8c8c; text-align:center; line-height:23px; }
+#content table.e-step-1 .td_submit { padding:0; padding-top:30px; }
+
+#content table.e-step-2 { width:100%; padding-top:15px; border-top:1px solid #d8d8d8; }
+#content table.e-step-2 td.notice-1 { padding:0; padding-bottom:25px; font-size:16px; color:#252525; text-align:center; border:0; }
+#content table.e-step-2 td.ip { padding:0; padding:15px 30px;  background-color:#ffffff; border:1px solid #e5e5e5; font-size:16px; color:#252525; }
+#content table.e-step-2 td.ip .box { float:left; width:100%; display:block; }
+#content table.e-step-2 td.ip .box .ip_pw { width:300px; font-size:12px; color:#a4a4a4; }
+#content table.e-step-2 td.ip .box span.pwcheck-n { display:block; float:left; padding-top:5px; width:330px; font-size:12px; color:red; }
+#content table.e-step-2 .td_submit { padding:0; padding-top:40px; }
+
+#content table.e-step-3 { border-top:1px solid #d8d8d8; padding-top:15px; width:100%; }
+#content table.e-step-3 td.info-1 { padding:0; padding-bottom:10px; color:#252525; }
+#content table.e-step-3 td.info-2 { color:#252525; }
+#content table.e-step-3 span.hp-info { display:block; float:left; line-height:37px; }
+#content table.e-step-3 td.info-3 { font-size:12px; color:#252525; padding-top:35px; padding-bottom:35px; border-bottom:1px solid #d8d8d8;}
+#content table.e-step-3 td.info-3 .box { float:left; width:100%; display:block; }
+#content table.e-step-3 .td_submit { padding:0; padding-top:30px; }
+#content table.e-step-3 .td_submit span { display:block; float:left; width:100%; position:relative; text-align:center; }
+#content table.e-step-3 .td_submit span a.secession { display:block; width:120px; font-size:12px; color:#656565; text-align:right; position:absolute; top:0; right:0; }
+
+#content table.end-step { padding:35px 0; width:100%; border-top:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8; }
+#content table.end-step td { padding:0; font-size:20px; color:#1d1d1d; text-align:center; }
+#content table.end-step td.info-1 { padding:10px 0 20px; font-size:12px; color:#8c8c8c; text-align:center; }
+
+#content .top-web { display:block; float:left; width:554px; padding:80px 0 30px; }
+#content .top-web .logo { display:block; margin:0 auto; width:260px; height:52px; background-repeat:no-repeat; background-position:center center; font-size:0; line-height:0; }
+#content .top-web .duo { background-image:url(/com_member/img/duo_logo.png); }
+#content .top-web .wed { background-image:url(/com_member/img/wed_logo.png); }
+#content .top-web .remarry { background-image:url(/com_member/img/remarry_logo.png); }
+#content .top-web .ten { background-image:url(/com_member/img/ten_logo.png); }
+#content .top-web span.st-1 { display:block; float:left; width:554px; margin-top:20px; font-size:12px; color:#8c8c8c; text-align:center; line-height:20px; }
+#content .top-web span.st-1 span { color:#010101; }
+#content .top-web span.st-2 { display:block; float:left; width:554px; margin-top:43px; font-size:30px; font-family:Nanum Gothic; color:#f58522; text-align:center; }
+
+#content .box-wrapper { display:block; float:left; width:554px; }
+#content .box-wrapper .bn-box { display:block; margin-top:30px; width:272px; height:252px; }
+
+#privacy { float:left; width:100%; min-width:958px; background-color:#f5f6f7; }
+#privacy .top-web { display:block; float:left; width:958px; padding:80px 0 30px; }
+#privacy .top-web .logo { display:block; margin:0 auto; width:260px; height:52px; background-repeat:no-repeat; background-position:center center; font-size:0; line-height:0; }
+#privacy .top-web .duo { background-image:url(/com_member/img/duo_logo.png); }
+#privacy .top-web .wed { background-image:url(/com_member/img/wed_logo.png); }
+#privacy .top-web .remarry { background-image:url(/com_member/img/remarry_logo.png); }
+#privacy .top-web .ten { background-image:url(/com_member/img/ten_logo.png); }
+#privacy .top-web span.st-1 { display:block; float:left; width:958px; margin-top:20px; font-size:12px; color:#8c8c8c; text-align:center; line-height:20px; }
+#privacy .top-web span.st-1 span { color:#010101; }
+#privacy .top-web span.st-2 { display:block; float:left; width:958px; margin-top:43px; font-size:30px; font-family:Nanum Gothic; color:#f58522; text-align:center; }
+#privacy .box-wrapper { display:block; float:left; width:958px; }
+#privacy table { width:100%; border-top:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8; }
+#privacy table caption { font-size:0; line-height:0; height:0; }
+#privacy table td.st-1 { padding:25px 0; font-size:18px; color:#252525; }
+#privacy table td.st-2 { padding-bottom:25px; font-size:12px; color:#6a6a6a; line-height:27px; }
+#privacy table td.st-2 span.tit-txt { font-size:16px; color:#000000; }
+.class logo ten{
+	position:absolute;
+	top:300px;
+	left:300px;
+}
