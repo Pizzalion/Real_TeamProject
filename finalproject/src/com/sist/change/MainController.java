@@ -1,6 +1,7 @@
 package com.sist.change;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.sist.member.model.MemberModel;
 
@@ -26,6 +27,9 @@ public class MainController {
 			break;
 		case 3:
 			mm.memberUpdate(request);
+			break;
+		case 4:
+			mm.memberDelete(request);
 			break;
 		}
 	}
