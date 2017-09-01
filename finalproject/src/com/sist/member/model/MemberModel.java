@@ -69,14 +69,13 @@ public class MemberModel {
 		  
 	  }
 	  public void memberUpdate(HttpServletRequest request) {
-		  String id=request.getParameter("id");
-		  String pwd=request.getParameter("pwd");
-		  MemberDAO dao=new MemberDAO();
-		  MemberVO vo=dao.isLogin(id, pwd);
-		  	request.setAttribute("asdfasdf", "member/infoUpdate.jsp");
+		   	request.setAttribute("asdfasdf", "member/infoUpdate.jsp");
 		  	
 		 }
-	  public void memberUpdateOk(MemberVO vo,HttpServletResponse response) {
+	  public void memberUpdateOk(MemberVO vo,HttpServletRequest request,HttpServletResponse response) {
+		  String strId=request.getParameter("mem_id");
+		  System.out.println(strId);
+		  System.out.println(pwd);
 		  MemberDAO dao=new MemberDAO();
 		  dao.MemberUpdate(vo);
 		  try {
@@ -104,5 +103,6 @@ public class MemberModel {
 				System.out.println(ex.getMessage());
 			}
 	  }
+	  
 	  
 }

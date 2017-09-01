@@ -229,16 +229,16 @@ public class MemberDAO {
 		   }
 		   return vo;
 	   }
-	   public MemberVO MemberUpdateData(int mem_no) {
+	   public MemberVO MemberUpdateData(String mem_id) {
 			MemberVO vo=new MemberVO();
 			try {
 				getConnection();
 				String sql="SELECT mem_no,mem_id,mem_pw,mem_name,mem_sex,mem_birth,"
 						+"mem_email,mem_phone1,mem_phone2,mem_phone3 "
 						+"FROM member_table "
-						+"WHERE mem_no=?";
+						+"WHERE mem_id=?";
 				ps=conn.prepareStatement(sql);
-				ps.setInt(1, mem_no);
+				ps.setString(1, mem_id);
 				ResultSet rs=ps.executeQuery();
 				rs.next();
 				vo.setMem_no(rs.getInt(1));
@@ -264,12 +264,12 @@ public class MemberDAO {
 		   		try {
 				getConnection();
 				String sql="UPDATE member_table SET mem_pw=?,mem_email=?,mem_phone=? "
-						+"WHERE mem_no=?";
+						+"WHERE mem_id=?";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, vo.getMem_pw());
 				ps.setString(2, vo.getMem_email());
 				ps.setString(3, vo.getMem_phone());
-				ps.setInt(4, vo.getMem_no());
+				ps.setString(4, vo.getMem_id());
 				ps.executeUpdate();
 			}catch(Exception ex) {
 				System.out.println(ex.getMessage());
