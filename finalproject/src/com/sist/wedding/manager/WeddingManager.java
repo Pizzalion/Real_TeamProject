@@ -8,12 +8,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sist.wedding.dao.ComVO;
+
 public class WeddingManager {
-	public static void main(String[] args) {
-		WeddingManager wm=new WeddingManager();
-		wm.weddingAllData();
-	}
 	
+/*	public static void main(String[] args) {
+		WeddingManager wm=new WeddingManager();
+		//wm.weddingAllData();
+		
+	}	*/
 	/*데이터 가져올수 있는 웨딩홀 주소*/
 	 public List<String> weddingSiteData(){
 		  List<String> list= new ArrayList<String>();
@@ -43,8 +46,9 @@ public class WeddingManager {
 			return list;
 	  }
 	 /*업체 정보 데이터 파싱*/
-	 public List<String> weddingAllData(){
-		  List<String> list= new ArrayList<String>();
+	 public List<ComVO> weddingAllData(){
+		 
+		  List<ComVO> list= new ArrayList<ComVO>();
 		  try {
 			  List<String> site=weddingSiteData();
 			
@@ -72,7 +76,8 @@ public class WeddingManager {
 				  String hCheck=hc .text().replace("\u00a0", "");
 				  Element poster=doc.select("div.hall_pic img").get(1); //사진 출력결과를 http://www.ihall.co.kr 뒤에 붙여야함
 				  String hPoster="http://www.ihall.co.kr"+poster.attr("src");
-				
+				  String hLike=null;
+				  
 				  System.out.println(hNo+"."+hName.text());
 				  System.out.println("별점 :"+hScore.text());
 				  System.out.println("주소 :"+hAdd);
@@ -85,10 +90,25 @@ public class WeddingManager {
 				  System.out.println("체크포인트:"+hCheck);				 
 				  System.out.println("사진:"+hPoster);
 				  System.out.println("===================");
-		
+				  
+				  ComVO vo= new ComVO();
+				  vo.setCom_no(hNo);
+				  vo.setCom_name(hName.text());
+				  vo.setCom_pic(hPoster);
+				  vo.setCom_tlike(hLike);
+				  vo.setCom_address(hAdd);
+				  vo.setCom_address2(hAdd2);
+				  vo.setCom_type(hType);
+				  vo.setCom_meal(hp);
+				  vo.setCom_menu(hMenu);
+				  vo.setCom_person(hPerson);
+				  vo.setCom_event(hEvent);
+				  vo.setCom_check(hCheck);
+				  vo.setCom_start(hScore.text());
+				  
+				  list.add(vo);
+				  
 				 
-	             
-	           
 			  }
 		  }catch(Exception ex) {
 			  System.out.println("WeddingAllData:"+ex.getMessage());
