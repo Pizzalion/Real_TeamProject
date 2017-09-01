@@ -5,7 +5,8 @@
  <jsp:useBean id="mpage" class="com.sist.member.model.MemberModel"/>
    <%
    mpage.cancelLike(request);
-   response.sendRedirect("likePage.jsp");
+   response.sendRedirect("project.jsp?mode=4");
+   System.out.println(request.getParameter("no"));
    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

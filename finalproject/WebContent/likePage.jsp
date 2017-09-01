@@ -23,22 +23,12 @@ mpage.getLikeData(request);
 <script type="text/javascript">
 $(function(){
 	$('.unlike').click(function(){
-      //var id = $(this).attr('idd');
-       alert('취소');
-	   var cno = $(this).attr('no');
-	   //alert('취소하시면 사라집니다.');
-		
-	   
-	   /* $.ajax({
-			type: 'post',
-			url: 'likePage.jsp',
-			data: {"cno":cno}// "id":id	
-		    /* success:function(value){
-			
-		} */
-		}); */ 
-		alert('취소하시면 사라집니다.');
-		
+       //var id = $(this).attr('idd');
+       //alert('취소');
+	   var com_no = $(this).attr('no');
+       //action
+	   $('#cancel'+com_no).submit();
+       //alert('취소하시면 사라집니다.');		
 	});
 });
 </script>
@@ -75,7 +65,13 @@ $(function(){
 				<a href="#"><img alt="예약신청" src="images/heart.png"></a>
 				</td>
 				<td align=center>
-				<form method="post" action="likeCancel_ok.jsp"><input type="submit" class="unlike" no="${vo.com_no }">취소</form>
+				<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.com_no }">
+                <input type="hidden" name=no value="${vo.com_no }">
+                <%-- <input type="hidden" name=mem_id value="${ }"> --%>
+                </form>
+				<input type="button" class="unlike" value="취소" no=${vo.com_no }>
+				
+				
 				<%-- <img alt="찜 취소" src="images/heart.png" id="cancel" no="${vo.com_no }"> --%>
 				</td>
 			</tr>

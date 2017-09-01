@@ -92,7 +92,7 @@ public class MemberModel {
 		 HttpSession session=request.getSession();			 
 		 String id =(String)session.getAttribute("id");
 		 //String id =(String)request.getParameter("id");
-		 String cno=(String)request.getParameter("cno");
+		 String cno=(String)request.getParameter("no");
 		 System.out.println(cno);
 		 dao.deleteLikeData(id, cno);
 	 }
