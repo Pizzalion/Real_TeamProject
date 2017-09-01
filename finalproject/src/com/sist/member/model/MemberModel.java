@@ -86,15 +86,24 @@ public class MemberModel {
 	  }
 	  public void likepage(HttpServletRequest request) {
 			 request.setAttribute("asdfasdf", "likePage.jsp");
-		 }
-		 public void getLikeData(HttpServletRequest request){
+ 	  }
+	  public void cancelLike(HttpServletRequest request) {
+		 MemberDAO dao =new MemberDAO();
+		 HttpSession session=request.getSession();			 
+		 String id =(String)session.getAttribute("id");
+		 //String id =(String)request.getParameter("id");
+		 String cno=(String)request.getParameter("cno");
+		 System.out.println(cno);
+		 dao.deleteLikeData(id, cno);
+	 }
+	  public void getLikeData(HttpServletRequest request){
 			 MemberDAO dao =new MemberDAO();
-			 HttpSession session=request.getSession();
-			 //System.out.println(error);
-			 String id =(String)session.getAttribute("id");
-			 //System.out.println(id);
+			 HttpSession session=request.getSession();			 
+			 String id =(String)session.getAttribute("id");			 
 			 List<HallVO> list = dao.memberLikeData(id);
-			 //System.out.println(error);
-			 request.setAttribute("hlist", list); 
-		 }
+			 request.setAttribute("hlist", list); 			  
+			 
+			 
+	 }
+	
 }

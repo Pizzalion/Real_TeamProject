@@ -282,8 +282,7 @@ public class MemberDAO {
 			List<HallVO> list = new ArrayList<HallVO>();
 			try {
 				getConnection();
-				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";
-				
+				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";				
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, id);
 				ResultSet rs = ps.executeQuery();
@@ -293,22 +292,23 @@ public class MemberDAO {
 				ps.close();
 				String[] tmp = data.split(",");
 				//System.out.println("추출완료");
-				for (String s : tmp) { //2.홀테이블에서
-					int i = Integer.parseInt(s);
+				for (String s : tmp) { //2.홀테이블에서				
 					
-					sql = "SELECT com_name,com_addr,hall_image FROM sample_table WHERE com_no=?";
+					int intS = Integer.parseInt(s);
+					sql = "SELECT com_name,com_addr,hall_image,food_price,people FROM sample_table WHERE com_no=?";
 					ps = conn.prepareStatement(sql);
-					ps.setInt(1, i);
+					ps.setInt(1, intS);
 					rs = ps.executeQuery();
 					rs.next();
 					
 					HallVO vo = new HallVO();
-					vo.setCom_no(i);
+					vo.setCom_no(intS);
 					//System.out.println(vo.getCom_no());
 					vo.setCom_name(rs.getString(1));
 					vo.setCom_addr(rs.getString(2));
 					vo.setHall_image(rs.getString(3));
-					
+					vo.setFood_price(rs.getString(4));
+					vo.setPeople(rs.getString(5));
 					list.add(vo);
 					rs.close();
 				}
@@ -319,4 +319,47 @@ public class MemberDAO {
 			}
 			return list;
 		} 
+
+	public void deleteLikeData(String id, String com_no) {
+		try {
+			getConnection();
+			String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String data = rs.getString(1);
+			rs.close();
+			ps.close();
+			String[] tmp = data.split(",");
+			System.out.println("추출완료");
+
+			//리스트 새로 만들기
+			String str="";
+			for (String s : tmp) {				
+				if (s.equals(com_no)) {
+					//배열에서 해당문자만 삭제하기
+				    System.out.println("삭제완료");					
+				}else {
+					str=str+","+s;
+				}				
+			}
+			str = str.substring(1);
+			System.out.println(str);
+			//리스트 db반영하기
+			sql = "UPDATE  member_table SET mem_likelist=? where mem_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, str);
+			ps.setString(2, id);			
+			ps.executeUpdate();
+			ps.close();
+			System.out.println("수정완료");
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+	   
+	   
 }

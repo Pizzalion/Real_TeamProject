@@ -20,7 +20,7 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
-    <a href="project.jsp" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
+    <a href="project.jsp" class="w3-bar-item w3-button"><img src="images/logo.jpg" ></a>
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
      
@@ -55,7 +55,7 @@
    
 
 	<div class="w3-container">
-  
+
   <div class="w3-bar w3-light-grey">
     <a href="project.jsp" class="w3-bar-item w3-button">Home</a> 
      <div class="w3-dropdown-hover">  
@@ -118,6 +118,9 @@
     </div>
     </c:if>
   </div>
+  
+
+  
 </div>
 </header>
 <!-- Page content -->
