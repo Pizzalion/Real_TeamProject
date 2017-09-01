@@ -54,11 +54,7 @@ public class MemberModel {
 			  session.setAttribute("name", vo.getMem_name());
 			  session.setAttribute("admin", vo.getMem_type());
 			  session.setAttribute("birth", vo.getMem_birth());
-			  
-			  
-			  
-			  
-			  
+		  
 		  }
 		  request.setAttribute("res", vo.getMsg());
 	  }
@@ -94,9 +90,11 @@ public class MemberModel {
 		 public void getLikeData(HttpServletRequest request){
 			 MemberDAO dao =new MemberDAO();
 			 HttpSession session=request.getSession();
+			 //System.out.println(error);
 			 String id =(String)session.getAttribute("id");
-			 //System.out.println(id.toString());
+			 //System.out.println(id);
 			 List<HallVO> list = dao.memberLikeData(id);
+			 //System.out.println(error);
 			 request.setAttribute("hlist", list); 
 		 }
 }

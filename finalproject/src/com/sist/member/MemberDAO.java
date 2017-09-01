@@ -283,6 +283,7 @@ public class MemberDAO {
 			try {
 				getConnection();
 				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";
+				
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, id);
 				ResultSet rs = ps.executeQuery();
@@ -294,16 +295,20 @@ public class MemberDAO {
 				//System.out.println("추출완료");
 				for (String s : tmp) { //2.홀테이블에서
 					int i = Integer.parseInt(s);
+					
 					sql = "SELECT com_name,com_addr,hall_image FROM sample_table WHERE com_no=?";
 					ps = conn.prepareStatement(sql);
 					ps.setInt(1, i);
 					rs = ps.executeQuery();
 					rs.next();
+					
 					HallVO vo = new HallVO();
 					vo.setCom_no(i);
+					//System.out.println(vo.getCom_no());
 					vo.setCom_name(rs.getString(1));
 					vo.setCom_addr(rs.getString(2));
 					vo.setHall_image(rs.getString(3));
+					
 					list.add(vo);
 					rs.close();
 				}
