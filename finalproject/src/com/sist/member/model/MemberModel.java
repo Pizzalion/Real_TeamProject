@@ -17,7 +17,7 @@ import javafx.scene.control.Alert;
 public class MemberModel {
 	public void memberJoin(HttpServletRequest request)
 	  {
-		  request.setAttribute("asdfasdf", "join.jsp");
+		  request.setAttribute("asdfasdf", "member/join.jsp");
 	  }
 	
 	  public void memberIdCheck(HttpServletRequest request)
@@ -33,7 +33,7 @@ public class MemberModel {
 	  }
 	  
 	  public void isLogin(HttpServletRequest request) {
-		  request.setAttribute("asdfasdf", "login.jsp");
+		  request.setAttribute("asdfasdf", "member/login.jsp");
 	  }
 	  public void memberLogin(HttpServletRequest request) {
 		  String id=request.getParameter("id");
@@ -52,11 +52,7 @@ public class MemberModel {
 			  session.setAttribute("name", vo.getMem_name());
 			  session.setAttribute("admin", vo.getMem_type());
 			  session.setAttribute("birth", vo.getMem_birth());
-			  
-			  
-			  
-			  
-			  
+			  session.setAttribute("sex", vo.getMem_sex());
 		  }
 		  request.setAttribute("res", vo.getMsg());
 	  }
@@ -65,25 +61,48 @@ public class MemberModel {
 		  MemberDAO dao=new MemberDAO();
 		  dao.memberInsert(vo);
 		  try {
-			  response.sendRedirect("project.jsp");
+			  response.sendRedirect("../project.jsp");
 		  }catch(Exception ex) {
 			  System.out.println(ex.getMessage());
 		  }
+		  
 		  
 	  }
 	  public void memberUpdate(HttpServletRequest request) {
-		   request.setAttribute("asdfasdf", "infoUpdate.jsp");
+		  String id=request.getParameter("id");
+		  String pwd=request.getParameter("pwd");
+		  MemberDAO dao=new MemberDAO();
+		  MemberVO vo=dao.isLogin(id, pwd);
+		  	request.setAttribute("asdfasdf", "member/infoUpdate.jsp");
+		  	
 		 }
 	  public void memberUpdateOk(MemberVO vo,HttpServletResponse response) {
 		  MemberDAO dao=new MemberDAO();
-		  
-		dao.MemberUpdate(vo);
-		  
+		  dao.MemberUpdate(vo);
 		  try {
-			  
-			  response.sendRedirect("project.jsp");
+			  	response.sendRedirect("../project.jsp");
 		  }catch(Exception ex) {
+			  
 			  System.out.println(ex.getMessage());
 		  }
+	 }
+	  public void memberDelete(HttpServletRequest request) {
+		  request.setAttribute("asdfasdf", "member/mem_delete.jsp");
 	  }
+	  public void memberDeleteOk(HttpServletRequest request,HttpServletResponse response) {
+		  	String strId=request.getParameter("mem_id");
+			String pwd=request.getParameter("mem_pw");
+			MemberDAO dao=new MemberDAO();
+			boolean bCheck=dao.memberDelete(strId, pwd);
+			try {
+				if(bCheck==true){
+					response.sendRedirect("../project.jsp");
+				}else{
+					response.sendRedirect("../main_content.jsp");		
+			  }
+			}catch(Exception ex) {
+				System.out.println(ex.getMessage());
+			}
+	  }
+	  
 }

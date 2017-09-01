@@ -196,7 +196,7 @@ public class MemberDAO {
 			   }
 			   else
 			   {
-				  sql="SELECT mem_id,mem_name,mem_type,mem_pw "
+				  sql="SELECT mem_id,mem_name,mem_type,mem_pw,mem_birth,mem_sex "
 				     +"FROM member_table "
 					 +"WHERE mem_id=?";
 				  ps=conn.prepareStatement(sql);
@@ -207,6 +207,8 @@ public class MemberDAO {
 				  vo.setMem_name(rs.getString(2));
 				  vo.setMem_type(rs.getString(3));
 				  String db_pwd=rs.getString(4);
+				  vo.setMem_birth(rs.getString(5));
+				  vo.setMem_sex(rs.getString(6));
 				  if(db_pwd.equals(mem_pw))
 				  {
 					  vo.setMsg("OK");
@@ -227,7 +229,7 @@ public class MemberDAO {
 		   }
 		   return vo;
 	   }
-	   /*public MemberVO MemberUpdateData(int mem_no) {
+	   public MemberVO MemberUpdateData(int mem_no) {
 			MemberVO vo=new MemberVO();
 			try {
 				getConnection();
@@ -256,9 +258,9 @@ public class MemberDAO {
 				disConnection();
 			}
 			return vo;
-		}*/
-	   public MemberVO MemberUpdate(int mem_no) {
-				MemberVO vo=new MemberVO();
+		}
+	   public void MemberUpdate(MemberVO vo) {
+				
 		   		try {
 				getConnection();
 				String sql="UPDATE member_table SET mem_pw=?,mem_email=?,mem_phone=? "
@@ -274,7 +276,34 @@ public class MemberDAO {
 			}finally {
 				disConnection();
 			}		
-			return vo;
+			
+		}
+	   public boolean memberDelete(String mem_id, String mem_pw) {
+			boolean bCheck=false;
+			try {
+				getConnection();
+				String sql="SELECT mem_pw FROM member_table WHERE mem_id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, mem_id);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				String db_pwd=rs.getString(1);
+				rs.close();
+				
+				if(mem_pw.equals(db_pwd)) {
+					sql="DELETE FROM member_table WHERE mem_id=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, mem_id);
+					ps.executeUpdate();
+					bCheck=true;
+				}
+				
+			}catch(Exception ex) {
+				System.out.println(ex.getMessage());
+			}finally {
+				disConnection();
+			}
+			return bCheck;
 		}
 	      
 }

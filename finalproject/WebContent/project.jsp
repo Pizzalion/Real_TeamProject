@@ -34,7 +34,7 @@
       </c:if> 
       
       <c:if test="${sessionScope.id!=null }">
-      <form method="post" action="logout.jsp" id="logout_frm">
+      <form method="post" action="member/logout.jsp" id="logout_frm">
       <input type=submit value="로그아웃" class="w3-bar-item w3-button">
       </form>
       </c:if>
