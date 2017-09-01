@@ -9,8 +9,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-
+import com.sist.*;
 import com.sist.member.MemberVO;
+import com.sist.wedding.dao.HallVO;
 
 public class MemberDAO {
 	private Connection conn;
@@ -276,5 +277,41 @@ public class MemberDAO {
 			}		
 			return vo;
 		}
-	      
+	   public List<HallVO> memberLikeData(String id) {
+			// 1.회원테이블에서
+			List<HallVO> list = new ArrayList<HallVO>();
+			try {
+				getConnection();
+				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, id);
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				String data = rs.getString(1);
+				rs.close();
+				ps.close();
+				String[] tmp = data.split(",");
+				//System.out.println("추출완료");
+				for (String s : tmp) { //2.홀테이블에서
+					int i = Integer.parseInt(s);
+					sql = "SELECT com_name,com_addr,hall_image FROM sample_table WHERE com_no=?";
+					ps = conn.prepareStatement(sql);
+					ps.setInt(1, i);
+					rs = ps.executeQuery();
+					rs.next();
+					HallVO vo = new HallVO();
+					vo.setCom_no(i);
+					vo.setCom_name(rs.getString(1));
+					vo.setCom_addr(rs.getString(2));
+					vo.setHall_image(rs.getString(3));
+					list.add(vo);
+					rs.close();
+				}
+			} catch (Exception ex) {
+				System.out.println(ex.getMessage());
+			} finally {
+				disConnection();
+			}
+			return list;
+		} 
 }

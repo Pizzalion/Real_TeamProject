@@ -104,7 +104,7 @@
       <button class="w3-button">마이페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">내 프로필</a>
-        <a href="#" class="w3-bar-item w3-button">찜목록</a>
+        <a href="project.jsp?mode=4" class="w3-bar-item w3-button">찜목록</a>
         <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
      </div>
     </div>

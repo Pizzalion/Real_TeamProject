@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sist.*;
 import com.sist.member.*;
 import com.sist.member.MemberDAO;
 import com.sist.member.MemberVO;
+import com.sist.wedding.dao.HallVO;
 
 import javafx.scene.control.Alert;
 
@@ -77,7 +79,7 @@ public class MemberModel {
 	  public void memberUpdateOk(MemberVO vo,HttpServletResponse response) {
 		  MemberDAO dao=new MemberDAO();
 		  
-		dao.MemberUpdate(vo);
+		//dao.MemberUpdate(vo);
 		  
 		  try {
 			  
@@ -86,4 +88,15 @@ public class MemberModel {
 			  System.out.println(ex.getMessage());
 		  }
 	  }
+	  public void likepage(HttpServletRequest request) {
+			 request.setAttribute("asdfasdf", "likePage.jsp");
+		 }
+		 public void getLikeData(HttpServletRequest request){
+			 MemberDAO dao =new MemberDAO();
+			 HttpSession session=request.getSession();
+			 String id =(String)session.getAttribute("id");
+			 //System.out.println(id.toString());
+			 List<HallVO> list = dao.memberLikeData(id);
+			 request.setAttribute("hlist", list); 
+		 }
 }

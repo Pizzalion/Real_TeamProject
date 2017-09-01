@@ -27,6 +27,9 @@ public class MainController {
 		case 3:
 			mm.memberUpdate(request);
 			break;
+		case 4:
+			mm.likepage(request);
+			break;
 		}
 	}
 }
