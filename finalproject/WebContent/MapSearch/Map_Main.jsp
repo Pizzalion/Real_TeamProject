@@ -8,38 +8,19 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYYzTU3uaJxbwIHrK1o288ybGFbEYA5qo&callback=initMap"
     async defer></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script type="text/javascript">
 function initMap() {
 	var test = {lat: 37.525845, lng: 127.054128}
-	var test2 = new google.maps.LatLng(37.525930,127.054545);
-	var contentip='<div>'+'<h2>호텔이얌</h2>'+'<p>나왔으면 좋겠어</p>'+'<a href="http://www.naver.com">이동~</a>';
-	var infowindow = new google.maps.InfoWindow({
-			content: contentip,
-			maxWidth:300
-	});
-	
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: test
   });
   var marker = new google.maps.Marker({
   	position: test,
-  	map: map,
-  	title:'기준'
+  	map: map
   });
-  
-  var addmark = new google.maps.Marker({
-	  position: test2,
-	  title:'추가 마커'
-  });
-  
-	addmark.setMap(map);
-	google.maps.event.addListener(marker,'click',function(){
-		infowindow.open(map,marker);
-	});
-	
 }
+
 
 </script>
 <style>
@@ -48,9 +29,6 @@ function initMap() {
        width: 70%;
        }
 </style>
-<link rel="stylesheet" href="MapSearch/css/style.css">
-<link rel="stylesheet" href="MapSearch/css/sb_style.css">
-
 
 </head>
 <body>
@@ -92,52 +70,6 @@ function initMap() {
       </div>
     </div>
   </div>
- 
-  <center>여기야</center>
-  
-  <!-- codepen 출처 셀박 -->
-  <center>
-  <table>
-  <td>
- 	<div class="glossy-selectbox">
-    <input type="checkbox">
-    <label data-default="Share This Post!" data-focus="Select one of the social media service..."></label>
-    <ul>
-        <li><a href="#" target="_blank">서울</a></li>
-        <li><a href="#" target="_blank">경기</a></li>
-        <li><a href="#" target="_blank">강원</a></li>
-        <li><a href="#" target="_blank">충북</a></li>
-        <li><a href="#" target="_blank">충남</a></li>
-        <li><a href="#" target="_blank">경북</a></li>
-        <li><a href="#" target="_blank">경남</a></li>
-        <li><a href="#" target="_blank">제주</a></li>
-    </ul>
-    </div>
-   </td>
-   <td>
-   <div class="glossy-selectbox">
-    <input type="checkbox">
-    <label data-default="Share This Post!" data-focus="Select one of the social media service..."></label>
-    <ul>
-        <li><a href="#" target="_blank">서울2</a></li>
-        <li><a href="#" target="_blank">경기2</a></li>
-        <li><a href="#" target="_blank">강원2</a></li>
-        <li><a href="#" target="_blank">충북2</a></li>
-        <li><a href="#" target="_blank">충남2</a></li>
-        <li><a href="#" target="_blank">경북2</a></li>
-        <li><a href="#" target="_blank">경남2</a></li>
-        <li><a href="#" target="_blank">제주2</a></li>
-    </ul>
-	</div>
-	</td>
-	</table>
-</center>
-  <!-- codepen 출처 셀박 끝 -->
-  &nbsp;&nbsp;&nbsp;
-  
-  
-  
-  
   
   <div class="w3-row-padding">
   <!-- 맵들어와라 -->
