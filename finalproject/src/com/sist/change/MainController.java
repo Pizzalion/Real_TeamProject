@@ -30,7 +30,12 @@ public class MainController {
 		case 3:
 			mm.memberUpdate(request);
 			break;
-		case 510:				//지도
+
+
+
+
+
+		case 510:				//지도추가했습니다.
 			msm.MapSearch(request);
 			break;
 		}
