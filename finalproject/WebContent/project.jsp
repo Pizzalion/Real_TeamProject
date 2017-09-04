@@ -12,9 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
 <script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
-
-
-
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -34,7 +31,7 @@
       </c:if> 
       
       <c:if test="${sessionScope.id!=null }">
-      <form method="post" action="logout.jsp" id="logout_frm">
+      <form method="post" action="member/logout.jsp" id="logout_frm">
       <input type=submit value="로그아웃" class="w3-bar-item w3-button">
       </form>
       </c:if>
@@ -104,7 +101,8 @@
       <button class="w3-button">마이페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">내 프로필</a>
-        <a href="project.jsp?mode=4" class="w3-bar-item w3-button">찜목록</a>
+        <a href="#" class="w3-bar-item w3-button">찜목록</a>
+
         <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
      </div>
     </div>
@@ -131,3 +129,4 @@
 </footer>
 </body>
 </html>
+

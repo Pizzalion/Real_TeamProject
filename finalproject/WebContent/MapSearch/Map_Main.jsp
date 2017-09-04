@@ -10,17 +10,24 @@
     async defer></script>
 <script type="text/javascript">
 function initMap() {
-	var test = {lat: 37.525845, lng: 127.054128}
+	var test = {lat: 37.525845, lng: 127.054128};
+	var test2 = {lat:37.525848, lng: 127.054129};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: test
   });
+ 
   var marker = new google.maps.Marker({
   	position: test,
   	map: map
   });
+  
+  var marker2 = new google.maps.Marker({
+	  	position: test2,
+	  	map: map
+	  });
+  //배열 사용해서 할것. 괜히 딴방법 찾아서 시간낭비하지 말자
 }
-
 
 </script>
 <style>

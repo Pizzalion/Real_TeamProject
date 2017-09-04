@@ -70,3 +70,4 @@ public class HallVO {
 		this.com_no = com_no;
 	}
 }
+
