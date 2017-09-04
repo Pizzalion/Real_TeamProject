@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttttt
+
+Minjun testtest
+=======
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttt
+tt�����׽�Ʈ
+>>>>>>> origin/sunki
