@@ -11,10 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-
-
-
+<script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -105,6 +102,7 @@
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">내 프로필</a>
         <a href="#" class="w3-bar-item w3-button">찜목록</a>
+
         <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
      </div>
     </div>
@@ -131,3 +129,4 @@
 </footer>
 </body>
 </html>
+
