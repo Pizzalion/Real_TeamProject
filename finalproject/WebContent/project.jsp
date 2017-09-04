@@ -1,4 +1,6 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
+﻿<%@ page language="java" contentType="text/html; charset=EUC-KR"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="model" class="com.sist.change.MainController"/>
@@ -11,6 +13,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+
+
+
 <script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
 <body>
 
@@ -157,4 +163,3 @@
 </footer>
 </body>
 </html>
-

@@ -1,5 +1,25 @@
 tttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
 <<<<<<< HEAD
+<<<<<<< HEAD
+ttttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
+=======
+tttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
+tt¼±±âÅ×½ºÆ®
+<<<<<<< HEAD
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttttt
+
+Minjun testtest
+=======
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttt
+tt�����׽�Ʈ
+>>>>>>> origin/sunki
+>>>>>>> d9a5ecf91983d35b754b32e36d251148845e3dbe
+=======
+tttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
+tt¼±±âÅ×½ºÆ®
+
+>>>>>>> 91f4bd6345d75c2dcefbfbc48e4c173d0bab57c3
+=======
 ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttttt
 
 Minjun testtest
@@ -7,3 +27,4 @@ Minjun testtest
 ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttt
 tt�����׽�Ʈ
 >>>>>>> origin/sunki
+>>>>>>> afcbdd5a48453b0fe18712f23106188d94468b52
