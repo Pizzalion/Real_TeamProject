@@ -2,6 +2,8 @@ package com.sist.change;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.sist.main.model.CompanyModel;
+import com.sist.main.model.RankingModel;
 import com.sist.member.model.*;
 import com.sist.model.MapSearchModel;
 
@@ -9,13 +11,14 @@ import com.sist.model.MapSearchModel;
 
 public class MainController {
 	public void controller(HttpServletRequest request) {
-	
+		RankingModel rm=new RankingModel();
+		CompanyModel cm=new CompanyModel();
 		MemberModel mm=new MemberModel();
 		MapSearchModel msm = new MapSearchModel();
 		String mode=request.getParameter("mode");
 		//기능 분리
 		if(mode==null)
-			mode="0";
+			mode="300";
 		int index=Integer.parseInt(mode);
 		switch(index) {
 		case 0:
@@ -37,6 +40,12 @@ public class MainController {
 
 		case 510:				//지도추가했습니다.
 			msm.MapSearch(request);
+			break;
+		case 300:
+			rm.rankingMainListData(request);
+			return;
+		case 301:
+			cm.companyDetailData(request);
 			break;
 		}
 	}
