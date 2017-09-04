@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
+﻿<%@ page language="java" contentType="text/html; charset=EUC-KR"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="model" class="com.sist.change.MainController"/>
@@ -16,6 +17,7 @@
 
 
 
+<script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -106,6 +108,7 @@
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">내 프로필</a>
         <a href="#" class="w3-bar-item w3-button">찜목록</a>
+
         <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
      </div>
     </div>
