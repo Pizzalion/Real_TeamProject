@@ -10,7 +10,7 @@ public class MainClass {
 		dao.comInsert();
 		System.out.println("저장완료");*/
 		WeddingManager wm=new WeddingManager();
-		wm.innerHallData();
+		//wm.innerHallData();
 	}
 
 }
