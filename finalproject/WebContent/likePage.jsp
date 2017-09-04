@@ -21,6 +21,7 @@ mpage.getLikeData(request);
 <link rel="stylesheet" href="table.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+var no=0;
 $(function(){
 	$('.unlike').click(function(){
        //var id = $(this).attr('idd');
@@ -30,6 +31,21 @@ $(function(){
 	   $('#cancel'+com_no).submit();
        //alert('취소하시면 사라집니다.');		
 	});
+	$('#bookBtn').click(function(){
+		if(no==0){
+			no = $(this).attr('value');
+			$('#okTr'+no).show();			
+		} 
+		else{
+			$('#okTr'+no).hide();
+			no = 0;
+		}
+	});
+	$('.reserveBtn').click(function(){
+		
+	});	
+
+	
 });
 </script>
 </head>
@@ -37,7 +53,8 @@ $(function(){
 
 <%-- <jsp:include page="header.jsp" /> --%>
 
-<h1 align=center>찜 목록</h1>
+<h1 align=left>찜 목록</h1>
+<hr/>
  <center>
  <div>
  	<table id=table_content width=900>
@@ -52,39 +69,60 @@ $(function(){
 		<c:forEach var="vo" items="${hlist }" >
 	        <tr class='dataTr'>			
 				<td align=center>
-				<%-- <input type=hidden value="${vo.com_no }"> --%>
-				<img width=200 alt="그림없음" src="http://iwedding.co.kr${vo.hall_image }">
+					<%-- <input type=hidden value="${vo.com_no }"> --%>
+					<img width=200 alt="그림없음" src="http://iwedding.co.kr${vo.hall_image }">
 				</td>
 				<td> 
-				 <h4>${vo.com_name }</h4>
-				  주소: ${vo.com_addr }<br/>
-				  식대: ${vo.food_price }<br/>
-				  인원: ${vo.people }<br/>
+					 <h4>${vo.com_name }</h4>
+					  주소: ${vo.com_addr }<br/>
+					  식대: ${vo.food_price }<br/>
+				 	 인원: ${vo.people }<br/>
 				</td>
 				<td align=center>
-				<a href="#"><img alt="예약신청" src="images/heart.png"></a>
+					<!-- <a href="#" ></a> -->
+					<img alt="예약신청" src="images/heart.PNG" width="50" height="30" id="bookBtn" value="${vo.com_no }">
+				
 				</td>
 				<td align=center>
-				<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.com_no }">
-                <input type="hidden" name=no value="${vo.com_no }">
-                <%-- <input type="hidden" name=mem_id value="${ }"> --%>
-                </form>
-				<input type="button" class="unlike" value="취소" no=${vo.com_no }>
-				
-				
-				<%-- <img alt="찜 취소" src="images/heart.png" id="cancel" no="${vo.com_no }"> --%>
+					<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.com_no }">
+                	<input type="hidden" name=no value="${vo.com_no }">
+                	<%-- <input type="hidden" name=mem_id value="${ }"> --%>
+                	</form>
+					<input type="button" class="unlike" value="취소" no=${vo.com_no }>
 				</td>
 			</tr>
-		</c:forEach>
+
+					<tr id="okTr${vo.com_no }" style="display: none">
+						<td align=center colspan=4>
+						   <form action="../reserve/reserve_ok.jsp" method="post">
+							<table id=none>
+								<tr>
+									<td>
+									<input type=hidden name=hall_no value="${vo.com_no }">
+									<input type=hidden name=mem_id>
+									<label for="cdate">희망상담일 : </label> 
+									<input type=date name="bk_cday" id="consultDate" required></td>
+									<td rowspan=2><label for="bk_ask">문의사항 :<br /></label></td>
+									<td rowspan=2><textarea name="bk_ask" width=200></textarea>
+									</td>
+									<td rowspan=2><input type=button class="reserveBtn"	value=확인></td>
+								</tr>
+								<tr>
+									<td><label for="bdate">행사예정일 : </label> 
+									<input type=date name="bk_dday" id="bookDate" required></td>
+								</tr>
+							</table>
+						   </form>	
+						</td>
+					</tr>
+				</c:forEach>
 		</table>
  
  </div>
+ <div height = 100>
+ <br/>
+ <br/>
+</div>
  </center>
-
-
-
-
-
-
 </body>
 </html>
