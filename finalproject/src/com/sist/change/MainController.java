@@ -2,13 +2,16 @@ package com.sist.change;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.sist.member.model.MemberModel;
+import com.sist.member.model.*;
+import com.sist.model.MapSearchModel;
 
 
 
 public class MainController {
 	public void controller(HttpServletRequest request) {
+	
 		MemberModel mm=new MemberModel();
+		MapSearchModel msm = new MapSearchModel();
 		String mode=request.getParameter("mode");
 		//기능 분리
 		if(mode==null)
@@ -27,8 +30,8 @@ public class MainController {
 		case 3:
 			mm.memberUpdate(request);
 			break;
-		case 4:
-			mm.likepage(request);
+		case 510:				//지도
+			msm.MapSearch(request);
 			break;
 		}
 	}

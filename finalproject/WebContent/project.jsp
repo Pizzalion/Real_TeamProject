@@ -7,20 +7,17 @@
 %>  
 <!DOCTYPE html>
 <html>
-<title>Wd peach</title>
+<title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
 <script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
-
-
-
 <body>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
-    <a href="project.jsp" class="w3-bar-item w3-button"><img src="images/logo.jpg" ></a>
+    <a href="project.jsp" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
      
@@ -34,7 +31,7 @@
       </c:if> 
       
       <c:if test="${sessionScope.id!=null }">
-      <form method="post" action="logout.jsp" id="logout_frm">
+      <form method="post" action="member/logout.jsp" id="logout_frm">
       <input type=submit value="로그아웃" class="w3-bar-item w3-button">
       </form>
       </c:if>
@@ -55,7 +52,7 @@
    
 
 	<div class="w3-container">
-
+  
   <div class="w3-bar w3-light-grey">
     <a href="project.jsp" class="w3-bar-item w3-button">Home</a> 
      <div class="w3-dropdown-hover">  
@@ -104,7 +101,8 @@
       <button class="w3-button">마이페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">내 프로필</a>
-        <a href="project.jsp?mode=4" class="w3-bar-item w3-button">찜목록</a>
+        <a href="#" class="w3-bar-item w3-button">찜목록</a>
+
         <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
      </div>
     </div>
@@ -118,9 +116,6 @@
     </div>
     </c:if>
   </div>
-  
-
-  
 </div>
 </header>
 <!-- Page content -->
@@ -132,9 +127,6 @@
 <footer class="w3-center w3-black w3-padding-16">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-
-
-
-
 </body>
 </html>
+
