@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 ttttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
+=======
+<<<<<<< HEAD
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttttt
+
+Minjun testtest
+=======
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttt
+tt선기테스트
+>>>>>>> origin/sunki
+>>>>>>> d9a5ecf91983d35b754b32e36d251148845e3dbe
