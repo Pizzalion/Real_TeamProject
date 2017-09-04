@@ -3,7 +3,6 @@ package com.sist.wedding.dao;
 public class HallVO {
 	private String com_name,com_addr,hall_style,hall_fmenu,food_price,people,hall_image;
 	private int xpos,ypos,zpos,com_no;
-	
 	public String getCom_name() {
 		return com_name;
 	}
@@ -71,3 +70,4 @@ public class HallVO {
 		this.com_no = com_no;
 	}
 }
+
