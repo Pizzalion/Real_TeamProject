@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
-<script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 
 
 
@@ -34,7 +34,7 @@
       </c:if> 
       
       <c:if test="${sessionScope.id!=null }">
-      <form method="post" action="logout.jsp" id="logout_frm">
+      <form method="post" action="member/logout.jsp" id="logout_frm">
       <input type=submit value="로그아웃" class="w3-bar-item w3-button">
       </form>
       </c:if>
@@ -129,9 +129,5 @@
 <footer class="w3-center w3-black w3-padding-16">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-
-
-
-
 </body>
 </html>
