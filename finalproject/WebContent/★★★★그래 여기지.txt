@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ttttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
 =======
+tttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeeee
+tt¼±±âÅ×½ºÆ®
 <<<<<<< HEAD
 ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttttt
 
@@ -15,3 +18,12 @@ tttttttttttttttttteeeeeeeeeeeeeeeeeesssssssssssssssttttttttttttttttttttttttteeee
 tt¼±±âÅ×½ºÆ®
 
 >>>>>>> 91f4bd6345d75c2dcefbfbc48e4c173d0bab57c3
+=======
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttttt
+
+Minjun testtest
+=======
+ttttttttttttttttttteeeeeeeeeeeeeeeeeessssssssssssssstttttttttttttttttt
+tt�����׽�Ʈ
+>>>>>>> origin/sunki
+>>>>>>> afcbdd5a48453b0fe18712f23106188d94468b52
