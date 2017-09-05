@@ -11,6 +11,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
+<script>
+// Script to open and close sidebar when on tablets and phones
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Slideshow Apartment Images
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-opacity-off";
+}
+</script>
+
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -41,7 +82,7 @@
 	<div class="w3-container">
   
   <div class="w3-bar w3-light-grey">
-    <a href="main.jsp" class="w3-bar-item w3-button">Home</a> 
+    <a href="project.jsp" class="w3-bar-item w3-button">Home</a> 
      <div class="w3-dropdown-hover">  
       <button class="w3-button">홀정보</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -99,70 +140,87 @@
  <div class="w3-row-padding w3-grayscale">
 	  
 	    <div class="w3-col l3 m6 w3-margin-bottom">
-   
 	    </div>
-	 <table border=0 width=900>
-   <tr>
-    <td width=450>
-      <table id="table_content" width=450>
-     <tr>
-       <td width=45% align=center rowspan="6">
-        <img src="${vo.com_pic }" width="300" height="300">
-       </td>
-       <th width=55% align=center colspan="2">
-        ${vo.com_name }
-       </th>
-     </tr>
+	
+	  <!-- Slideshow Header -->
+  <div class="w3-container" id="apartment">
    
- 	
-     <tr>
-       <td width=20% align=right>주 소</td>
-       <td width=35% align=left>${vo.com_address }</td>
-     </tr>
-      <tr>
-       <td width=20% align=right>도로명 주소</td>
-       <td width=35% align=left>${vo.com_address2 }</td>
-     </tr>
-     <tr>
-       <td width=20% align=right>홀 타입</td>
-       <td width=35% align=left>${vo.com_type }</td>
-     </tr>
-     <tr>
-       <td width=20% align=right>메뉴 종류</td>
-       <td width=35% align=left>${vo.com_menu }</td>
-     </tr>
-     <tr>
-       <td width=20% align=right>식사 비용</td>
-       <td width=35% align=left>${vo.com_meal }</td>
-     </tr>
-     <tr>
-       <td width=20% align=right>보증 인원</td>
-       <td width=35% align=left>${vo.com_person }</td>
-     </tr>
-     <tr>
-       <td width=20% align=right>기능행사</td>
-       <td width=35% align=left>${vo.com_event }</td>
-     </tr>
-     <tr>
-       <td width=20% align=right>별점</td>
-       <td width=35% align=left>${vo.com_star }</td>
-     </tr>
-   </table>
-	  <table id="table_content" width=450>
-     <tr>
-      <td align=left valign="top" height=200>
-      ${vo.com_ckeck }
-      </td>
-     </tr>
-   </table>
-    </td>
-  </tr>
-  </table>
+    <div class="w3-display-container mySlides">
+    <img src="${vo.com_pic }" style="width:100%;margin-bottom:-6px">
+      <div class="w3-display-bottomleft w3-container w3-black">
+        
+      </div>
+    </div>
+  </div>
+ 
+
+  <div class="w3-container" font-size="20px;" >
+    <h2 class="w3-text-green">${vo.com_name }</h2>
+    <p align=left><i class="fa fa-fw fa-clock-o" ></i>별점 : ${vo.com_star }</p>
+    <div class="w3-row w3-large">
+      <div class="w3-col s6">
+        <p><i class="fa fa-fw fa-male"></i> 주소 : ${vo.com_address }</p>
+        <p><i class="fa fa-fw fa-bath"></i> 도로명 주소 : ${vo.com_address2 } </p>
+        <p><i class="fa fa-fw fa-bed"></i> 홀타입 : ${vo.com_type } </p>
+      </div>
+      <div class="w3-col s6">
+   
+        <p><i class="fa fa-fw fa-clock-o"></i> 보증인원 : ${vo.com_person }</p>
+        <p><i class="fa fa-fw fa-clock-o"></i> 메뉴종류 : ${vo.com_menu }</p>
+        <p><i class="fa fa-fw fa-clock-o"></i> 식사비용 : ${vo.com_meal }</p>
+      </div>
+    </div>
+    <hr>
+    
+    
+    <h4><strong>체크 포인트</strong></h4>
+    <p>${vo.com_ckeck }</p>
+    
+    <hr>
+    
+    <h4><strong>상담 / 예약</strong></h4>
   
+     <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">상담신청 </button></p>
+       <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">예약하기 </button></p>
+       <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">견적내기</button></p>
+  </div>
+  <hr>
+  
+  <!-- Contact -->
+  <div class="w3-container" id="contact">
+    <h2>리뷰</h2>
+    <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
+    <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
+    <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+    <p>Questions? Go ahead, ask them:</p>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+    <button type="submit" class="w3-button w3-green w3-third">Send a Message</button>
+    </form>
+  </div>
+  
+  <footer class="w3-container w3-padding-16" style="margin-top:32px">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></footer>
 
-
-
+<!-- End page content -->
 </div>
+
+<!-- Subscribe Modal -->
+<div id="subscribe" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom w3-padding-large">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('subscribe').style.display='none'" class="fa fa-remove w3-button w3-xlarge w3-right w3-transparent"></i>
+      <h2 class="w3-wide">SUBSCRIBE</h2>
+      <p>Join our mailing list to receive updates on available dates and special offers.</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
+      <button type="button" class="w3-button w3-padding-large w3-green w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none'">Subscribe</button>
+    </div>
+  </div>
+</div>
+	
+</div>
+<!-- End page content -->
 </div>
 
 <!-- Footer -->
