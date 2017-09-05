@@ -53,7 +53,7 @@ $(function(){
 
 <%-- <jsp:include page="header.jsp" /> --%>
 
-<h1 align=left>찜 목록</h1>
+<h1 align=center>찜 목록</h1>
 <hr/>
  <center>
  <div>

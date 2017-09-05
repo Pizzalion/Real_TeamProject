@@ -361,5 +361,38 @@ public class MemberDAO {
 		}
 
 	}
+	public void reserveOk(ReserveVO vo) {
+		try {
+			getConnection();
+			String sql= "INSERT INTO bk_table VALUES(BK_TABLE2_SEQ.nextval, ?,?,?,?,'0',?) ";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getHall_no());
+			ps.setString(2, vo.getBk_cday());
+			ps.setString(3, vo.getBk_dday());
+			ps.setString(4, vo.getBk_ask());
+			ps.setString(5, vo.getMem_id());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			disConnection();
+		}
+	}
+	public int totalpage(String id) {
+		int total=0;
+		try {
+			getConnection();
+			String sql = "SELECT CEIL FROM member_table WHERE mem_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String data = rs.getString(1);
+			rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return total;
+	}
 	   
 }
