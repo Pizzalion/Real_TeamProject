@@ -22,6 +22,7 @@ mpage.getLikeData(request);
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 var no=0;
+
 $(function(){
 	$('.unlike').click(function(){
        //var id = $(this).attr('idd');
@@ -42,7 +43,8 @@ $(function(){
 		}
 	});
 	$('.reserveBtn').click(function(){
-		
+		var cno = $(this).attr('no');
+		$('#test'+cno).submit();
 	});	
 
 	
@@ -84,7 +86,7 @@ $(function(){
 				
 				</td>
 				<td align=center>
-					<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.com_no }">
+					<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.com_no }" >
                 	<input type="hidden" name=no value="${vo.com_no }">
                 	<%-- <input type="hidden" name=mem_id value="${ }"> --%>
                 	</form>
@@ -94,7 +96,7 @@ $(function(){
 
 					<tr id="okTr${vo.com_no }" style="display: none">
 						<td align=center colspan=4>
-						   <form action="../reserve/reserve_ok.jsp" method="post">
+						   <form action="reserve/reserve_ok.jsp" method="post" id="test${vo.com_no }">
 							<table id=none>
 								<tr>
 									<td>
@@ -105,7 +107,7 @@ $(function(){
 									<td rowspan=2><label for="bk_ask">문의사항 :<br /></label></td>
 									<td rowspan=2><textarea name="bk_ask" width=200></textarea>
 									</td>
-									<td rowspan=2><input type=button class="reserveBtn"	value=확인></td>
+									<td rowspan=2><input type=button class="reserveBtn" value=확인 no="${vo.com_no }"></td>
 								</tr>
 								<tr>
 									<td><label for="bdate">행사예정일 : </label> 
@@ -120,6 +122,9 @@ $(function(){
  
  </div>
  <div height = 100>
+ <img src="images/back.png" width=20>
+ 현재페이지
+ <img src="images/next.png" width=20>
  <br/>
  <br/>
 </div>
