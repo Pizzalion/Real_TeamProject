@@ -31,7 +31,7 @@ $(function(){
 	   $('#cancel'+com_no).submit();
        //alert('취소하시면 사라집니다.');		
 	});
-	$('#bookBtn').click(function(){
+	$('.bookBtn').click(function(){
 		if(no==0){
 			no = $(this).attr('value');
 			$('#okTr'+no).show();			
@@ -80,7 +80,7 @@ $(function(){
 				</td>
 				<td align=center>
 					<!-- <a href="#" ></a> -->
-					<img alt="예약신청" src="images/heart.PNG" width="50" height="30" id="bookBtn" value="${vo.com_no }">
+					<img alt="예약신청" src="images/heart.PNG" width="50" height="30" class="bookBtn" value="${vo.com_no }">
 				
 				</td>
 				<td align=center>
