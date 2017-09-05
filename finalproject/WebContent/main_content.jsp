@@ -90,7 +90,8 @@
            <p class="w3-opacity">${vo.review_regdate }   작성자:${vo.review_writer }</p>
            <p>${vo.review_comment }</p> 
          <p>시설: ${vo.review_fscore } 교통: ${vo.review_tscore } 가격: ${vo.review_mscore } 음식: ${vo.review_pscore } 서비스: ${vo.review_sscore }</p>
-         <p>평점: ${vo.review_ave }</p>        
+         <p>평점: ${vo.review_ave }</p>     
+         <p>${vo.com_no }</p>   
          <p ><a href="project.jsp?mode=201&com_no=${vo.com_no }" ><button class="w3-button w3-light-grey w3-block"  >더보기</button></a></p> 
        </div> 
 

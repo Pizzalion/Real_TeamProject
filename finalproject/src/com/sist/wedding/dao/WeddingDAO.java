@@ -111,9 +111,9 @@ public class WeddingDAO {
 			   int start=(rowSize*page)-(rowSize-1);
 			   int end=rowSize*page;
 			   
-			  String sql = "SELECT review_no, review_title, review_regdate, review_writer, review_comment, review_fscore, review_tscore, review_mscore, review_pscore, review_sscore, review_ave, com_no, num "
-					   +"FROM (SELECT review_no, review_title, review_regdate, review_writer, review_comment, review_fscore, review_tscore, review_mscore, review_pscore, review_sscore, review_ave, com_no,rownum as num "
-					   +"FROM (SELECT review_no, review_title, review_regdate, review_writer, review_comment, review_fscore, review_tscore, review_mscore, review_pscore, review_sscore, review_ave, com_no FROM review_table "
+			  String sql = "SELECT review_no, review_title, review_regdate, review_writer, review_comment, review_fscore, review_tscore, review_mscore, review_pscore, review_sscore, com_no, num "
+					   +"FROM (SELECT review_no, review_title, review_regdate, review_writer, review_comment, review_fscore, review_tscore, review_mscore, review_pscore, review_sscore,  com_no ,rownum as num "
+					   +"FROM (SELECT review_no, review_title, review_regdate, review_writer, review_comment, review_fscore, review_tscore, review_mscore, review_pscore, review_sscore, com_no FROM review_table "
 					   +"ORDER BY review_no DESC)) "
 					   +"WHERE num BETWEEN "+start+" AND "+end;
 			   
@@ -132,7 +132,7 @@ public class WeddingDAO {
 				   vo.setReview_tscore(rs.getInt(7));
 				   vo.setReview_mscore(rs.getInt(8));
 				   vo.setReview_pscore(rs.getInt(9));
-				   vo.setReview_sscore(rs.getInt(10));
+				   vo.setReview_sscore(rs.getInt(10));		
 				   vo.setCom_no(rs.getInt(11));
 			
 
