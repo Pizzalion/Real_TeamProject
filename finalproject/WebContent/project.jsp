@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-﻿<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+﻿<%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="model" class="com.sist.change.MainController"/>
 <%
 	model.controller(request);
-%>  
+%> 
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>

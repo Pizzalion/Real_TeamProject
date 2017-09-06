@@ -1,6 +1,5 @@
 <%@page import="com.sist.member.ReserveVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <jsp:useBean id="rm" class="com.sist.member.model.ReserveModel"/>
 <%
 request.setCharacterEncoding("EUC-KR");
