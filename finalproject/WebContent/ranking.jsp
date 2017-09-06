@@ -91,10 +91,12 @@
 <div class="w3-content w3-padding" style="max-width:1300px">
 
   <!-- Project Section -->
-<div class="w3-container w3-padding-32" id="about">
+ <div class="w3-container w3-padding-32" id="about">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">랭킹</h3>
-    
-  </div>
+  </div> 
+<!--   <div class="w3-container w3-padding-32" id="projects">
+   <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">랭킹</h3>
+  </div> -->
 <div class="w3-row-padding">
 
  <div class="w3-row-padding w3-grayscale">
