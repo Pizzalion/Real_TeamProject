@@ -85,7 +85,7 @@
     <div class="w3-dropdown-hover">  
       <button class="w3-button">이용후기</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="#" class="w3-bar-item w3-button">신랑/신부 이용후기</a>
+        <a href="project.jsp?mode=200" class="w3-bar-item w3-button">신랑/신부 이용후기</a>
         <a href="#" class="w3-bar-item w3-button">전문가 리뷰</a>
       </div>
     </div>
@@ -126,7 +126,8 @@
 <!-- Page content -->
 	<div class="w3-content w3-padding" style="max-width:1300px">
 <!-- Project Section -->
-    <jsp:include page="${main_jsp }"></jsp:include>
+      <jsp:include page="${main_jsp }"></jsp:include>  
+    
 <!-- End page content -->
 </div>
 <!-- Footer -->

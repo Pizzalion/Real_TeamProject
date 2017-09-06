@@ -129,7 +129,7 @@ function showDivs(n) {
 </div>
 </header>
 <!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1300px">
+<div class="w3-content w3-padding" style="max-width:1300px; ">
 
   <!-- Project Section -->
 <div class="w3-container w3-padding-32" id="about">
@@ -137,7 +137,7 @@ function showDivs(n) {
     
   </div>
 
- <div class="w3-row-padding w3-grayscale">
+ <div class="w3-row-padding w3-grayscale" style="width: 70%; margin-left: 170px">
 	  
 	    <div class="w3-col l3 m6 w3-margin-bottom">
 	    </div>

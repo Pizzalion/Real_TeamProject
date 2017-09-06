@@ -100,7 +100,7 @@
 <div class="w3-row-padding">
 
  <div class="w3-row-padding w3-grayscale">
-	  <c:forEach var="vo" items="${rList }">
+	  <c:forEach var="vo" items="${rList1 }">
 	    <div class="w3-col l3 m6 w3-margin-bottom">
 	    <a href="main_detail.jsp?mode=1&com_no=${vo.com_no }">
 	      <img src="${vo.com_pic }" style="width:100%;height: 195px;"></a>
