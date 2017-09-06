@@ -20,7 +20,7 @@ import javafx.scene.control.Alert;
 public class MemberModel {
 	public void memberJoin(HttpServletRequest request)
 	  {
-		  request.setAttribute("asdfasdf", "join.jsp");
+		  request.setAttribute("main_jsp", "join.jsp");
 	  }
 	
 	  public void memberIdCheck(HttpServletRequest request)
@@ -32,11 +32,11 @@ public class MemberModel {
 	  }
 	  
 	  public void mainContent(HttpServletRequest request) {
-		  request.setAttribute("asdfasdf", "main_content.jsp");
+		  request.setAttribute("main_jsp", "main_content.jsp");
 	  }
 	  
 	  public void isLogin(HttpServletRequest request) {
-		  request.setAttribute("asdfasdf", "login.jsp");
+		  request.setAttribute("main_jsp", "member/login.jsp");
 	  }
 	  public void memberLogin(HttpServletRequest request) {
 		  String id=request.getParameter("id");
@@ -71,7 +71,7 @@ public class MemberModel {
 		  
 	  }
 	  public void memberUpdate(HttpServletRequest request) {
-		   request.setAttribute("asdfasdf", "infoUpdate.jsp");
+		   request.setAttribute("main_jsp", "infoUpdate.jsp");
 		 }
 	  public void memberUpdateOk(MemberVO vo,HttpServletResponse response) {
 		  MemberDAO dao=new MemberDAO();
@@ -86,7 +86,7 @@ public class MemberModel {
 		  }
 	  }
 	  public void likepage(HttpServletRequest request) {
-			 request.setAttribute("asdfasdf", "likePage.jsp");
+			 request.setAttribute("main_jsp", "likePage.jsp");
  	  }
 	  public void cancelLike(HttpServletRequest request) {
 		 MemberDAO dao =new MemberDAO();

@@ -30,10 +30,12 @@ public class MainController {
 		case 2:
 			mm.memberJoin(request);
 			break;
-		case 3:
+		case 103:
 			mm.memberUpdate(request);
 			break;
-
+		case 104:
+			mm.likepage(request);
+			break;
 
 
 

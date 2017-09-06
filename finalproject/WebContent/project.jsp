@@ -104,9 +104,10 @@
       <button class="w3-button">마이페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">내 프로필</a>
-        <a href="#" class="w3-bar-item w3-button">찜목록</a>
+        <a href="project.jsp?mode=105" class="w3-bar-item w3-button">예약페이지</a>
+        <a href="project.jsp?mode=104" class="w3-bar-item w3-button">찜목록</a>
+        <a href="project.jsp?mode=103" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
 
-        <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
      </div>
     </div>
     </c:if>
@@ -115,6 +116,7 @@
       <button class="w3-button">관리페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">회원관리</a>
+        
       </div>
     </div>
     </c:if>
