@@ -46,7 +46,10 @@ $(function(){
 		var cno = $(this).attr('no');
 		$('#test'+cno).submit();
 	});	
-
+	$('.dataTd').click(function(){
+		var cno=$(this).attr('value');
+		location.href='main_detail.jsp?mode=1&com_no='+cno;
+	});
 	
 });
 </script>
@@ -69,20 +72,20 @@ $(function(){
 				<th>취소</th>
 			</tr>
 		<c:forEach var="vo" items="${hlist }" >
-	        <tr class='dataTr'>			
-				<td align=center>
+	        <tr class='dataTr' >			
+				<td align=center class=dataTd id="td1_${vo.com_no }" value="${vo.com_no }">
 					<%-- <input type=hidden value="${vo.com_no }"> --%>
-					<img width=200 alt="그림없음" src="http://iwedding.co.kr${vo.hall_image }">
+					<img width=200 alt="그림없음" src="${vo.com_pic }">
 				</td>
-				<td> 
+				<td class=dataTd id="tr2_${vo.com_no }" value="${vo.com_no }"> 
 					 <h4>${vo.com_name }</h4>
-					  주소: ${vo.com_addr }<br/>
-					  식대: ${vo.food_price }<br/>
-				 	 인원: ${vo.people }<br/>
+					  주소: ${vo.com_address }<br/>
+					  식대: ${vo.com_meal }<br/>
+				 	 인원: ${vo.com_person }<br/>
 				</td>
 				<td align=center>
 					<!-- <a href="#" ></a> -->
-					<img alt="예약신청" src="images/heart.PNG" width="50" height="30" class="bookBtn" value="${vo.com_no }">
+					<img alt="예약상담신청" src="images/heart.PNG" width="50" height="30" class="bookBtn" value="${vo.com_no }">
 				
 				</td>
 				<td align=center>

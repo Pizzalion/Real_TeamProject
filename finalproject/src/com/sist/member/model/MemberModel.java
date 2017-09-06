@@ -11,7 +11,7 @@ import com.sist.*;
 import com.sist.member.*;
 import com.sist.member.MemberDAO;
 import com.sist.member.MemberVO;
-import com.sist.wedding.dao.HallVO;
+import com.sist.wedding.dao.ComVO;
 
 import javafx.scene.control.Alert;
 
@@ -101,7 +101,7 @@ public class MemberModel {
 			 MemberDAO dao =new MemberDAO();
 			 HttpSession session=request.getSession();			 
 			 String id =(String)session.getAttribute("id");			 
-			 List<HallVO> list = dao.memberLikeData(id);
+			 List<ComVO> list = dao.memberLikeData(id);
 			 request.setAttribute("hlist", list); 			  
 			 
 			 

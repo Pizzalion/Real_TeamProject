@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import com.sist.*;
 import com.sist.member.MemberVO;
+import com.sist.wedding.dao.ComVO;
 import com.sist.wedding.dao.HallVO;
 
 public class MemberDAO {
@@ -278,9 +279,9 @@ public class MemberDAO {
 			}		
 			return vo;
 		}
-	   public List<HallVO> memberLikeData(String id) {
+	   public List<ComVO> memberLikeData(String id) {
 			// 1.회원테이블에서
-			List<HallVO> list = new ArrayList<HallVO>();
+			List<ComVO> list = new ArrayList<ComVO>();
 			try {
 				getConnection();
 				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";				
@@ -296,20 +297,20 @@ public class MemberDAO {
 				for (String s : tmp) { //2.홀테이블에서				
 					
 					int intS = Integer.parseInt(s);
-					sql = "SELECT com_name,com_addr,hall_image,food_price,people FROM sample_table WHERE com_no=?";
+					sql = "SELECT com_name,com_address,com_pic,com_meal,com_person FROM com_table WHERE com_no=?";
 					ps = conn.prepareStatement(sql);
 					ps.setInt(1, intS);
 					rs = ps.executeQuery();
 					rs.next();
 					
-					HallVO vo = new HallVO();
+					ComVO vo = new ComVO();
 					vo.setCom_no(intS);
 					//System.out.println(vo.getCom_no());
 					vo.setCom_name(rs.getString(1));
-					vo.setCom_addr(rs.getString(2));
-					vo.setHall_image(rs.getString(3));
-					vo.setFood_price(rs.getString(4));
-					vo.setPeople(rs.getString(5));
+					vo.setCom_address(rs.getString(2));
+					vo.setCom_pic(rs.getString(3));
+					vo.setCom_meal(rs.getString(4));
+					vo.setCom_person(rs.getString(5));
 					list.add(vo);
 					rs.close();
 				}

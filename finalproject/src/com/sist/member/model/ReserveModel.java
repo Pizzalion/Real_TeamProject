@@ -19,9 +19,9 @@ public class ReserveModel {
 		MemberDAO dao = new MemberDAO();
 		dao.reserveOk(vo);
 		try {
-			response.sendRedirect("../project.jsp?mode=4");	
+			response.sendRedirect("../project.jsp?mode=104");	
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("reserve_ok():"+e.getMessage());
 		}
 		
 	}
