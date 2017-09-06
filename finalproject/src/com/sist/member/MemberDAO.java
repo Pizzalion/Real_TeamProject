@@ -365,7 +365,7 @@ public class MemberDAO {
 	public void reserveOk(ReserveVO vo) {
 		try {
 			getConnection();
-			String sql= "INSERT INTO bk_table VALUES(BK_TABLE2_SEQ.nextval, ?,?,?,?,'0',?) ";
+			String sql= "INSERT INTO bk_table VALUES(BK_TABLE2_SEQ.nextval, ?,?,?,?,'0',?,sysdate) ";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vo.getHall_no());
 			ps.setString(2, vo.getBk_cday());
