@@ -31,6 +31,10 @@
 </head>
 <body>
 <center>
+ <div class="w3-container w3-padding-32" id="projects">
+   <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">로그인</h2>
+  </div> 
+  
 	<div class="loginForm">
         <form method="post" name="id" action="member/login_1.jsp" id="log_frm">
             <div class="box">
@@ -43,7 +47,9 @@
               <span class="fright"><a href="" style="text-decoration: none">아이디 찾기</a>&nbsp;|&nbsp;<a href="" style="text-decoration: none">비밀번호 찾기</a></span>
             </p> -->
           </div>
+          <div>
           <input type=button id="loginBtn" class="loginBtn" value="로그인" style="text-decoration: none">
+          </div>
         </form>
       </div>
       </center>
