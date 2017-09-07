@@ -10,6 +10,7 @@
 <body>
 <div class="w3-container w3-padding-32" id="projects">
    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">랭킹</h3>
+    <a a href="ranking.jsp" style="text-align:right"> 전체보기 </a>
   </div>
  
  <div class="w3-row-padding">
