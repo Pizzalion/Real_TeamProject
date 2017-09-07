@@ -3,7 +3,8 @@
 <jsp:useBean id="model" class="com.sist.change.MainController"/>
 <%
 	model.controller(request);
-%> 
+%>
+<!-- 이게 떠야 됩니다 -->
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
