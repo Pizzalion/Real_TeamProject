@@ -1,11 +1,10 @@
 <%@page import="org.apache.catalina.ant.SessionsTask"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR" import="java.util.*, com.sist.wedding.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <jsp:useBean id="mpage" class="com.sist.member.model.MemberModel"/>
+ <jsp:useBean id="dao" class="com.sist.member.MemberDAO"/>
 <%
-
-//mpage.cancelLike(request);
 mpage.getLikeData(request);  
 
 %>
@@ -50,7 +49,10 @@ $(function(){
 		var cno=$(this).attr('value');
 		location.href='main_detail.jsp?mode=1&com_no='+cno;
 	});
-	
+	/* $('#pagebtn').click(function(){
+		//var page = $(this).attr('page');
+		$('#1').submit();
+	}); */
 });
 </script>
 </head>
@@ -124,10 +126,20 @@ $(function(){
 		</table>
  
  </div>
- <div height = 100>
- <img src="images/back.png" width=20>
- 현재페이지
- <img src="images/next.png" width=20>
+ <div>
+  <br/>
+ <br/>
+ </div>
+ <div height = 100 margin=20>
+ <a href="project.jsp?mode=104&page=${curpage>1?curpage-1:curpage }">
+ <img src="images/back.png" id=pagebtn width=20 ></a>
+
+ ${curpage } 페이지 / ${totalpage } 페이지 
+
+<a href="project.jsp?mode=104&page=${curpage<totalpage?curpage+1:curpage }">
+<img src="images/next.png" id=pagebtn width=20 ></a>
+
+
  <br/>
  <br/>
 </div>

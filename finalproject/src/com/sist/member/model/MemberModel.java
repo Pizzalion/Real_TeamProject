@@ -1,7 +1,9 @@
 
 package com.sist.member.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -101,10 +103,31 @@ public class MemberModel {
 			 MemberDAO dao =new MemberDAO();
 			 HttpSession session=request.getSession();			 
 			 String id =(String)session.getAttribute("id");			 
-			 List<ComVO> list = dao.memberLikeData(id);
+			// List<ComVO> list = dao.memberLikeData(id);
+			 
+			 String strPage=request.getParameter("page");
+			 if(strPage==null)
+			 	strPage="1";
+			 int curpage=Integer.parseInt(strPage);
+	//		 Map map=new HashMap();
+			 int rowSize=5;
+			 int start=(curpage*rowSize)-(rowSize-1);
+			 int end=curpage*rowSize;
+			 /*map.put("start",start);
+			 map.put("end",end);*/
+			 
+			// List<ComVO> list=dao.boardAllData(map);
+			// request.setAttribute("list", list);
+			 
+			 List<ComVO> list = dao.memberLikeData(id,start,end);
+			 
+			 double a = dao.numMemberLikeData(id)/(double)rowSize; 
+			// double b = dao.numMemberLikeData(id)/rowSize;
+			 int totalpage = (int) Math.ceil(a);
+			 //System.out.println(totalpage);
 			 request.setAttribute("hlist", list); 			  
-			 
-			 
+			 request.setAttribute("curpage", curpage);
+			 request.setAttribute("totalpage", totalpage);
 	 }
 	
 }
