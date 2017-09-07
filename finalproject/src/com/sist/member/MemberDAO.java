@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -202,6 +204,9 @@ public class MemberDAO {
 			}
 			return vo;
 		}
+<<<<<<< HEAD
+	   public List<ComVO> memberLikeData(String id, int start, int end) {
+=======
 	   public void MemberUpdate(MemberVO vo) {
 			
 	   		try {
@@ -222,8 +227,10 @@ public class MemberDAO {
 		
 	}
 	   public List<ComVO> memberLikeData(String id) {
+>>>>>>> dfc59963728627035a303f595f9b21e48ea03f89
 			// 1.회원테이블에서
 			List<ComVO> list = new ArrayList<ComVO>();
+			List<ComVO> hlist = new ArrayList<ComVO>();
 			try {
 				getConnection();
 				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";				
@@ -236,10 +243,10 @@ public class MemberDAO {
 				ps.close();
 				String[] tmp = data.split(",");
 				//System.out.println("추출완료");
-				for (String s : tmp) { //2.홀테이블에서				
-					
-					int intS = Integer.parseInt(s);
-					sql = "SELECT com_name,com_address,com_pic,com_meal,com_person FROM com_table WHERE com_no=?";
+				for (String s : tmp) { //2.홀테이블에서	
+					int intS = Integer.parseInt(s);		
+					sql = "SELECT com_name,com_address,com_pic,com_meal,com_person "
+							+ "FROM com_table WHERE com_no=?";
 					ps = conn.prepareStatement(sql);
 					ps.setInt(1, intS);
 					rs = ps.executeQuery();
@@ -256,14 +263,41 @@ public class MemberDAO {
 					list.add(vo);
 					rs.close();
 				}
-			} catch (Exception ex) {
+				//list를 map에 맞춰서 가져오기	
+					for(int i=start-1;i<end;i++) {
+						if(list.get(i)==null) break;
+						hlist.add(list.get(i));						
+					}				
+				} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 			} finally {
-				disConnection();
-			}
-			return list;
+				disConnection();				
+			}		
+			return hlist;
 		} 
-
+	   public int numMemberLikeData(String id) {
+			int total=0;			
+			try {
+				getConnection();
+				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";				
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, id);
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				String data = rs.getString(1);
+				rs.close();
+				ps.close();
+				String[] tmp = data.split(",");
+				//System.out.println("추출완료");
+				total = tmp.length	;			
+				System.out.println(total);			
+				} catch (Exception ex) {
+				System.out.println(ex.getMessage());
+			} finally {
+				disConnection();				
+			}		
+			return total;
+		} 
 	public void deleteLikeData(String id, String com_no) {
 		try {
 			getConnection();
