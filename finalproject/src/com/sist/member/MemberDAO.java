@@ -88,65 +88,7 @@ public class MemberDAO {
 		   }
 		   return count;
 	   }
-	   public List<ZipcodeVO> postFindData(String dong)
-	   {
-		   System.out.println("dong="+dong);
-		   List<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
-		   try
-		   {
-			   getConnection();
-			   String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') "
-					     +"FROM zipcode "
-					     +"WHERE dong LIKE '%'||?||'%'";
-			   ps=conn.prepareStatement(sql);
-			   ps.setString(1, dong);
-			   ResultSet rs=ps.executeQuery();
-			   while(rs.next())
-			   {
-				   ZipcodeVO vo=new ZipcodeVO();
-				   vo.setZipcode(rs.getString(1));
-				   vo.setSido(rs.getString(2));
-				   vo.setGugun(rs.getString(3));
-				   vo.setDong(rs.getString(4));
-				   vo.setBunji(rs.getString(5));
-				   list.add(vo);
-			   }
-			   rs.close();
-		   }catch(Exception ex)
-		   {
-			   System.out.println(ex.getMessage());
-		   }
-		   finally
-		   {
-			   disConnection();
-		   }
-		   return list;
-	   }
-	   public int postFindCount(String dong)
-	   {
-		   int list=0;
-		   try
-		   {
-			   getConnection();
-			   String sql="SELECT COUNT(*) "
-					     +"FROM zipcode "
-					     +"WHERE dong LIKE '%'||?||'%'";
-			   ps=conn.prepareStatement(sql);
-			   ps.setString(1, dong);
-			   ResultSet rs=ps.executeQuery();
-			   rs.next();
-			   list=rs.getInt(1);
-			   rs.close();
-		   }catch(Exception ex)
-		   {
-			   System.out.println(ex.getMessage());
-		   }
-		   finally
-		   {
-			   disConnection();
-		   }
-		   return list;
-	   }
+	  
 	   public void memberInsert(MemberVO vo)
 	   {
 		   try
@@ -154,7 +96,7 @@ public class MemberDAO {
 			   // Connection주소 얻기 SELECT NVL(MAX(mem_no)+1,1) FROM member_table)
 			   getConnection();
 			   String sql="INSERT INTO member_table VALUES("
-					     +"( SELECT NVL(MAX(mem_no)+1,1) FROM member_table) ,?,?,?,?,?,?,0,0,?,?)";
+					     +"(SELECT NVL(MAX(mem_no)+1,1) FROM member_table) ,?,?,?,?,?,?,0,0,?,?)";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, vo.getMem_id());
 			   ps.setString(2, vo.getMem_pw());
@@ -232,16 +174,16 @@ public class MemberDAO {
 		   }
 		   return vo;
 	   }
-	   /*public MemberVO MemberUpdateData(int mem_no) {
+	   public MemberVO MemberUpdateData(String mem_id) {
 			MemberVO vo=new MemberVO();
 			try {
 				getConnection();
 				String sql="SELECT mem_no,mem_id,mem_pw,mem_name,mem_sex,mem_birth,"
 						+"mem_email,mem_phone1,mem_phone2,mem_phone3 "
 						+"FROM member_table "
-						+"WHERE mem_no=?";
+						+"WHERE mem_id=?";
 				ps=conn.prepareStatement(sql);
-				ps.setInt(1, mem_no);
+				ps.setString(1, mem_id);
 				ResultSet rs=ps.executeQuery();
 				rs.next();
 				vo.setMem_no(rs.getInt(1));
@@ -261,27 +203,31 @@ public class MemberDAO {
 				disConnection();
 			}
 			return vo;
-		}*/
-	   public MemberVO MemberUpdate(int mem_no) {
-				MemberVO vo=new MemberVO();
-		   		try {
-				getConnection();
-				String sql="UPDATE member_table SET mem_pw=?,mem_email=?,mem_phone=? "
-						+"WHERE mem_no=?";
-				ps=conn.prepareStatement(sql);
-				ps.setString(1, vo.getMem_pw());
-				ps.setString(2, vo.getMem_email());
-				ps.setString(3, vo.getMem_phone());
-				ps.setInt(4, vo.getMem_no());
-				ps.executeUpdate();
-			}catch(Exception ex) {
-				System.out.println(ex.getMessage());
-			}finally {
-				disConnection();
-			}		
-			return vo;
 		}
+<<<<<<< HEAD
 	   public List<ComVO> memberLikeData(String id, int start, int end) {
+=======
+	   public void MemberUpdate(MemberVO vo) {
+			
+	   		try {
+			getConnection();
+			String sql="UPDATE member_table SET mem_pw=?,mem_email=?,mem_phone=? "
+					+"WHERE mem_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getMem_pw());
+			ps.setString(2, vo.getMem_email());
+			ps.setString(3, vo.getMem_phone());
+			ps.setString(4, vo.getMem_id());
+			ps.executeUpdate();
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}finally {
+			disConnection();
+		}		
+		
+	}
+	   public List<ComVO> memberLikeData(String id) {
+>>>>>>> dfc59963728627035a303f595f9b21e48ea03f89
 			// 1.회원테이블에서
 			List<ComVO> list = new ArrayList<ComVO>();
 			List<ComVO> hlist = new ArrayList<ComVO>();
@@ -425,5 +371,130 @@ public class MemberDAO {
 		}
 		return total;
 	}
-	   
+	public boolean memberDelete(String mem_id, String mem_pw) {
+		boolean bCheck=false;
+		try {
+			getConnection();
+			String sql="SELECT mem_pw FROM member_table WHERE mem_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, mem_id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(mem_pw.equals(db_pwd)) {
+				sql="DELETE FROM member_table WHERE mem_id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, mem_id);
+				ps.executeUpdate();
+				bCheck=true;
+			}
+			
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}finally {
+			disConnection();
+		}
+		return bCheck;
+	}
+   public List<MemberVO> boardListData(int page)
+   {
+ 	  List<MemberVO> list=new ArrayList<MemberVO>();
+ 	  try
+ 	  {
+ 		  getConnection();
+           int rowSize=10;
+           int start=(rowSize*page)-(rowSize-1);
+           // 1 11 21 31
+           int end=rowSize*page;
+           String sql="SELECT mem_no,mem_id,mem_name,mem_sex,mem_birth,mem_email,mem_type,num "
+        		    +"FROM (SELECT mem_no,mem_id,mem_name,mem_sex,mem_birth,mem_email,mem_type,rownum as num "
+        		    +"FROM (SELECT mem_no,mem_id,mem_name,mem_sex,mem_birth,mem_email,mem_type "
+        		    +"FROM member_table ORDER BY mem_no DESC)) "
+        		    +"WHERE num BETWEEN "+start+" AND "+end;
+           ps=conn.prepareStatement(sql);
+           ResultSet rs=ps.executeQuery();
+           while(rs.next())
+           {
+         	  MemberVO vo=new MemberVO();
+         	  vo.setMem_no(rs.getInt(1));
+         	  vo.setMem_id(rs.getString(2));
+         	  vo.setMem_name(rs.getString(3));
+         	  vo.setMem_sex(rs.getString(4));
+         	  vo.setMem_birth(rs.getString(5));
+         	  vo.setMem_email(rs.getString(6));
+         	  vo.setMem_type(rs.getString(7));
+         	  list.add(vo);
+           }
+           rs.close();
+ 	  }catch(Exception ex)
+ 	  {
+ 		  System.out.println(ex.getMessage());
+ 	  }
+ 	  finally
+ 	  {
+ 		  disConnection();
+ 	  }
+ 	  return list;
+   }
+   public int adminTotalPage()
+   {
+ 	  int total=0;
+ 	  try
+ 	  {
+ 		  getConnection();
+ 		  String sql="SELECT CEIL(COUNT(*)/10) FROM member_table";
+ 		  ps=conn.prepareStatement(sql);
+ 		  ResultSet rs=ps.executeQuery();
+ 		  rs.next();
+ 		  total=rs.getInt(1);
+ 		  rs.close();
+ 	  }catch(Exception ex)
+ 	  {
+ 		  System.out.println(ex.getMessage());
+ 	  }
+ 	  finally
+ 	  {
+ 		  disConnection();
+ 	  }
+ 	  return total;
+   }
+   public int adminRowCount()
+   {
+ 	  int total=0;
+ 	  try
+ 	  {
+ 		  getConnection();
+ 		  String sql="SELECT COUNT(*) FROM member_table";
+ 		  ps=conn.prepareStatement(sql);
+ 		  ResultSet rs=ps.executeQuery();
+ 		  rs.next();
+ 		  total=rs.getInt(1);
+ 		  rs.close();
+ 	  }catch(Exception ex)
+ 	  {
+ 		  System.out.println(ex.getMessage());
+ 	  }
+ 	  finally
+ 	  {
+ 		  disConnection();
+ 	  }
+ 	  return total;
+   }
+   public int adminDelete(String mem_id) {
+		int result=0;
+	   try {
+			getConnection();
+			String sql="DELETE FROM member_table WHERE mem_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, mem_id);
+			result=ps.executeUpdate();
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}finally {
+			disConnection();
+		}
+		return result;
+	}   
 }
