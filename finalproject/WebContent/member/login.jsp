@@ -31,25 +31,19 @@
 </head>
 <body>
 <center>
- <div class="w3-container w3-padding-32" id="projects">
-   <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">로그인</h2>
-  </div> 
-  
 	<div class="loginForm">
         <form method="post" name="id" action="member/login_1.jsp" id="log_frm">
             <div class="box">
-            <input type="text" class="iText" id="id" name="id">
+            <input type="text" class="iText" id="id" name="id" placeholder="ID를 입력하세요.">
             <br>
-            <input type="password" name="pwd" id="pwd" class="iText">
+            <input type="password" name="pwd" id="pwd" class="iText" placeholder="비밀번호를 입력하세요.">
             <br>
             <!-- <p>
              <span class="fleft"><input type="checkbox" id=""><label for="">아이디 저장</label></span>
               <span class="fright"><a href="" style="text-decoration: none">아이디 찾기</a>&nbsp;|&nbsp;<a href="" style="text-decoration: none">비밀번호 찾기</a></span>
             </p> -->
           </div>
-          <div>
           <input type=button id="loginBtn" class="loginBtn" value="로그인" style="text-decoration: none">
-          </div>
         </form>
       </div>
       </center>

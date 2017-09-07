@@ -1,5 +1,5 @@
 package com.sist.change;
-
+//이게 떠야된다고요
 import javax.servlet.http.HttpServletRequest;
 
 import com.sist.main.model.CompanyModel;
@@ -32,6 +32,19 @@ public class MainController {
 		case 2:
 			mm.memberJoin(request);
 			break;
+		case 3:
+			mm.memberUpdate(request);
+			break;
+		case 4:
+			mm.memberDelete(request);
+			break;
+		case 5:
+			mm.admin(request);
+			break;
+		/*case 6:
+			mm.adminDelete(request);
+			break;*/
+			
 		case 103:
 			mm.memberUpdate(request);
 			break;

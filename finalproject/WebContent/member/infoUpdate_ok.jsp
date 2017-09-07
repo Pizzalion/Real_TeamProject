@@ -16,7 +16,7 @@
  <jsp:setProperty name="vo" property="*"/> 
  </jsp:useBean>
  <%
-	 model.memberUpdateOk(vo,request,response);
+ 		model.memberUpdateOk(vo,response);
 /*  	System.out.println("나와라요");
  	System.out.println(vo.getMem_id());
  	System.out.println(vo.getMem_name());

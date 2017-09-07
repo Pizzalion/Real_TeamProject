@@ -9,6 +9,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.sist.wedding.dao.ComVO;
+import com.sist.wedding.dao.ImgVO;
+import com.sist.wedding.dao.InnerHallVO;
+import com.sist.wedding.dao.OptVO;
 
 public class WeddingManager {
 	
@@ -117,5 +120,181 @@ public class WeddingManager {
 	  }
 	  
 
+	 /* 홀정보 데이터 */
+		public List<InnerHallVO> innerHallData() {
+
+			List<InnerHallVO> list = new ArrayList<InnerHallVO>();
+			try {
+				List<String> site = weddingSiteData();
+				int p = 0;
+				for (int i = 0; i < site.size(); i++) {
+					String url = site.get(i);
+					Document doc = Jsoup.connect(url).get(); // 포스터
+					int hNo = i + 1;
+					Element hName = doc.select("div.hall_info_box div.name").first(); // 홀이름
+
+					try {
+
+						// 홀 정보 출력
+						System.out.println(hNo + "." + hName.text());
+						for (int o = 1; o < 5; o++) {
+							/* System.out.println(p + "." + hName.text()); */
+							int ihNo = p + 1;
+							Element hSub = doc.select("div.subhall_exp_box table tr").get(o).select("td").get(0); // 홀명칭
+							Element hEventTime = doc.select("div.subhall_exp_box table tr").get(o).select("td").get(1);// 예식간격
+							Element hEventType = doc.select("div.subhall_exp_box table tr").get(o).select("td").get(2);// 예식형태
+							Element hMealType = doc.select("div.subhall_exp_box table tr").get(o).select("td").get(3);// 식사종류
+							Element hHallPrice = doc.select("div.subhall_exp_box table tr").get(o).select("td").get(4);// 홀사용료
+							Element hMaxPerson = doc.select("div.subhall_exp_box table tr").get(o).select("td").get(5);// 보증인원
+							System.out.print(" (" + ihNo + ")");
+							System.out.println("홀 명칭:" + hSub.text());
+							System.out.println("예식간격:" + hEventTime.text());
+							System.out.println("예식형태:" + hEventType.text());
+							System.out.println("식사종류:" + hMealType.text());
+							System.out.println("홀사용료:" + hHallPrice.text());
+							System.out.println("보증인원:" + hMaxPerson.text());
+							System.out.println("=====================");
+							p++;
+
+							InnerHallVO vo = new InnerHallVO();
+							vo.setHall_no(ihNo);
+							vo.setHall_name(hSub.text());
+							vo.setHall_style(hEventType.text());
+							vo.setHall_fmenu(hMealType.text());
+							vo.setHall_price(hHallPrice.text());
+							vo.setHall_people(hMaxPerson.text());
+							vo.setHall_time(hEventTime.text());
+							vo.setCom_no(hNo);
+
+							list.add(vo);
+						}
+						System.out.println("=====================");
+					} catch (Exception ex) {
+					}
+
+				}
+
+			} catch (Exception ex) {
+				System.out.println("WeddingAllData:" + ex.getMessage());
+			}
+			return list;
+		}
+
+		/* 웨딩홀 사진 Insert */
+		public List<ImgVO> weddingImageData() {
+			List<ImgVO> list = new ArrayList<ImgVO>();
+			try {
+				List<String> site = weddingSiteData();
+				int k = 1;
+				for (int i = 0; i < site.size(); i++) {
+					String url = site.get(i);
+					Document doc = Jsoup.connect(url).get(); // 포스터
+					int hNo = i + 1;
+					Element hName = doc.select("div.hall_info_box div.name").first(); // 홀이름
+					
+					for (int j = 0; j < 5; j++) {
+						System.out.println(hNo + ". :" + hName.text());
+						ImgVO vo = new ImgVO();
+						try {
+							Element img = doc.select("div.img_box ul li a img").get(j);
+							String hImg = img.attr("src");
+							System.out.println("사진 " + k + "." + hImg);
+			
+							vo.setImg_no(k);
+							vo.setImg_title(hName.text());
+							vo.setImg_src(hImg);
+							vo.setCom_no(hNo);
+							k++;
+							 
+							list.add(vo);
+						}catch(Exception ex) {
+					
+						}
+		
+					}
+
+				}
+			} catch (Exception ex) {
+				System.out.println("WeddingAllData:" + ex.getMessage());
+			}
+			return list;
+		}
+		
+		public List<String> estiSiteData(){
+			  List<String> list= new ArrayList<String>();
+				try {
+					int p=0;
+					for(int i=0; i<120; i++) {
+						
+						Document doc=Jsoup.connect("http://www.ihall.co.kr/estimate?start="+(i*20)).get();
+						Elements site=doc.select("div.btn_box a");
+						
+						for(int j=0; j<20; j++) {
+							Element atag=site.get(j*6);
+						
+							String h=atag.attr("href");
+							
+							list.add("http://www.ihall.co.kr"+h);
+							
+							System.out.println(p+"."+h);
+			 
+							  p++;
+						}
+			
+					}
+				}catch(Exception ex) {
+					System.out.println("WeddingManager: "+ex.getMessage());
+				}
+				
+				return list;
+		  }	  
+		
+		 public List<OptVO> estiAllData(){
+			  List<OptVO> list= new ArrayList<OptVO>();
+			  try {
+				  List<String> site=estiSiteData();
+				int k=1;
+				  for(int i=0; i<site.size(); i++) {
+					  String url=site.get(i);
+					  Document doc=Jsoup.connect(url).get(); 
+					  int hNo=i+1;
+					  
+					  Element name=doc.select("div.est_hallname_box p").first();  //1.홀이름
+					  String eName=name.text().substring(0,name.text().indexOf("("));
+					  System.out.println(hNo+". :"+eName);
+					 try {
+					  for(int x=0; x<10; x++) {
+						  Element opName=doc.select("div.est_datalist_box table tr td").get(x*5);
+						  System.out.println("  항목 "+ x +":"+opName.text());
+						  Element opPrice=doc.select("div.est_datalist_box table tr td").get(x*5+1);
+						  System.out.println("  가격"+ x +":"+opPrice.text());
+						  Element opChoice=doc.select("div.est_datalist_box table tr td").get(x*5+2);
+						  System.out.println("  비고 "+ x +":"+opChoice.text());
+		
+						  Element opAbout=doc.select("div.est_datalist_box table tr td").get(x*5+4);
+						  System.out.println("  비고 "+ x +":"+opAbout.text());
+						   
+						  OptVO vo= new OptVO();
+						  	vo.setCom_title(eName);
+						  	vo.setOpt_name(opName.text());
+						  	vo.setOpt_price(opPrice.text());
+						  	vo.setOpt_sel(opChoice.text());
+						  	vo.setOpt_con(opAbout.text());
+						  	vo.setCom_no(k);
+						  	vo.setOpt_no(x);
+						  	
+						  	list.add(vo);
+						  	k++;			  
+					  }
+					  }catch(Exception ex) {
+						  System.out.println("항목 없음");
+					  }
+
+			  }
+			  }catch(Exception ex) {
+				  System.out.println("WeddingAllData:"+ex.getMessage());
+			  }
+			  return list;
+		  }
 
 }
