@@ -24,8 +24,8 @@
 				type:'POST',
 				url:'idcheck_result.jsp',
 				data:{"id":id},
-				success:function(response){
-					var count=response.trim();
+				success:function(response){   
+  					var count=response.trim();
 					var data="";
 						if(count==0){
 							data=id+"는(은) 사용가능한 ID입니다.";

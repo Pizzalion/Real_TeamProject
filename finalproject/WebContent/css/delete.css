@@ -1,0 +1,15 @@
+@charset "EUC-KR";
+#form{
+	width:900px;
+}
+#tal{
+	text-align: left;
+}
+table ul li{
+	list-style-type: none;
+}
+#table{
+	border-bottom: 3px solid #ededed;
+	border-top: 3px solid #ededed;
+	background-color: #ededed;
+}

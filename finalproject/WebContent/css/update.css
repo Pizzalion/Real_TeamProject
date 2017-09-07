@@ -1,0 +1,67 @@
+@charset "EUC-KR";
+
+#wrapper1{
+	border: 5px solid #ededed;
+	width:600px;
+	height:650px;
+	border-radius: 10px;
+	background-color: #ffffff;	
+}
+#wrapper1 img{
+	width:300px;
+	height:100px;
+}
+#updateForm #useremail{
+	width:200px;
+}
+#updateForm #userid,#updateForm #username{
+	width:100px;
+}
+#updateForm #userpwd,#updateForm #userpwd1{
+	width:100px;
+}
+#updateForm #userAddr1,#updateForm #userAddr2{
+	width:250px;
+	display: block;
+}
+#updateForm input[type="button"],
+#updateForm input[type="submit"]{
+	background-color: #FFF;
+	border:2px solid #000000;
+	padding: 3px 10px;
+	border-radius: 20px;
+	
+}
+#updateForm input[type="text"],
+#updateForm input[type="password"],
+#updateForm input[type="radio"],
+#updateForm select
+{
+	background-color: #efefef;
+	border:1px solid #000000;
+	padding: 3px;
+	margin: 5px;
+	width:60px;
+}
+#updateForm input[type="date"]
+{
+	background-color: #efefef;
+	border:1px solid #000000;
+	padding: 3px;
+	margin: 5px;
+	width:200px;
+}
+#updateForm p{
+	text-align: left;
+	vertical-align: center;
+}
+
+#updateForm label{
+	padding-left: 150px;
+}
+#updateForm .btnSubmit{
+	padding-left: 350px;
+}
+
+
+

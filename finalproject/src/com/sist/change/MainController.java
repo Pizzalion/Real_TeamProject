@@ -32,6 +32,19 @@ public class MainController {
 		case 2:
 			mm.memberJoin(request);
 			break;
+		case 3:
+			mm.memberUpdate(request);
+			break;
+		case 4:
+			mm.memberDelete(request);
+			break;
+		case 5:
+			mm.admin(request);
+			break;
+		/*case 6:
+			mm.adminDelete(request);
+			break;*/
+			
 		case 103:
 			mm.memberUpdate(request);
 			break;
