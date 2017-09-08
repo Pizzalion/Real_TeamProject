@@ -1,5 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR" import="java.util.*,com.sist.mapsearch.dao.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	List<GPSVO> glist = MapSearchDAO.realizeGPS();
+	request.setAttribute("glist", glist);
+	
+	int i=0;
+	String[] xp={"","","","","",""};
+	String[] yp={"","","","","",""};
+	
+	for(GPSVO vo : glist)
+	{
+		String x2 = vo.getX_p();
+		String y2 = vo.getY_p();
+	
+		xp[i] = x2;
+		yp[i] = y2;
+		
+		System.out.println("gpsvo():"+x2 +" : "+y2);
+		System.out.println("xp["+i+"]:"+xp[i]+"/ yp["+i+"]:"+yp[i]);
+		i++;
+		
+	}
+	
+	String x1 = xp[0];
+	String y1 = yp[0];
+	
+%>
+<c:set var="list" value="<%=glist %>"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +38,38 @@
     async defer></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script type="text/javascript">
+var markers=[];
+var iterator=0;
+var markerArray=[];
+var i=0;
+
+$(document).ready(function(){
+	  $(".dropdownboxA").click(function(){
+	    $(".menuA").toggleClass("showMenu");
+	      $(".menuA > li").click(function(){
+	        $(".dropdownboxA > p").text($(this).text());
+	        $(".menuA").removeClass("showMenu");
+	      });
+	  });
+	});
+$(document).ready(function(){
+	  $(".dropdownboxB").click(function(){
+	    $(".menuB").toggleClass("showMenu");
+	      $(".menuB > li").click(function(){
+	        $(".dropdownboxB > p").text($(this).text());
+	        $(".menuB").removeClass("showMenu");
+	      });
+	  });
+	});
+	
+
+//맵 & 마커 표시 시작
 function initMap() {
-	var test = {lat: 37.525845, lng: 127.054128}
-	var test2 = new google.maps.LatLng(37.525930,127.054545);
+	
+	var test = {lat: 37.325845, lng: 127.154128}
+	var test2 = new google.maps.LatLng(37.575930,127.154545);
+	var test3 = new google.maps.LatLng(<%=x1%>,<%=y1%>);
+	
 	var contentip='<div>'+'<h2>호텔이얌</h2>'+'<p>나왔으면 좋겠어</p>'+'<a href="http://www.naver.com">이동~</a>';
 	var infowindow = new google.maps.InfoWindow({
 			content: contentip,
@@ -20,7 +77,7 @@ function initMap() {
 	});
 	
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 16,
+    zoom: 10,
     center: test
   });
   var marker = new google.maps.Marker({
@@ -33,22 +90,53 @@ function initMap() {
 	  position: test2,
 	  title:'추가 마커'
   });
+  var addmark2 = new google.maps.Marker({
+	  position: test3,
+	  title:'추가됨'
+  });
   
+  var addmark3 = new google.maps.Marker({
+	  position: markers[0],
+	  title:'어디계십니까'
+  });
+  
+  var addmark4 = new google.maps.Marker({
+	  position:markers[1],
+	  title:'와주십시오'
+  });
+  
+  var addmark5 = new google.maps.Marker({
+	  position:markers[2],
+	  title:'설마 같은값 받냐'
+  });
+	//배열을 이용하여 마커 정보 input 및 뿌려주기
+	//구성필요
+	
+	
+	
 	addmark.setMap(map);
+	addmark2.setMap(map);
+	addmark3.setMap(map);
+	addmark4.setMap(map);
+	addmark5.setMap(map);
 	google.maps.event.addListener(marker,'click',function(){
 		infowindow.open(map,marker);
 	});
-	
 }
+//맵 & 마커 표시 끝
+
+
+
+
 
 </script>
 <style>
  #map {
-       height: 400px;
-       width: 70%;
+       height:300px;
+       width:70%;
        }
 </style>
-<link rel="stylesheet" href="MapSearch/css/style.css">
+
 <link rel="stylesheet" href="MapSearch/css/sb_style.css">
 
 
@@ -96,53 +184,50 @@ function initMap() {
   <center>여기야</center>
   
   <!-- codepen 출처 셀박 -->
-  <center>
-  <table>
-  <td>
- 	<div class="glossy-selectbox">
-    <input type="checkbox">
-    <label data-default="Share This Post!" data-focus="Select one of the social media service..."></label>
-    <ul>
-        <li><a href="#" target="_blank">서울</a></li>
-        <li><a href="#" target="_blank">경기</a></li>
-        <li><a href="#" target="_blank">강원</a></li>
-        <li><a href="#" target="_blank">충북</a></li>
-        <li><a href="#" target="_blank">충남</a></li>
-        <li><a href="#" target="_blank">경북</a></li>
-        <li><a href="#" target="_blank">경남</a></li>
-        <li><a href="#" target="_blank">제주</a></li>
-    </ul>
-    </div>
-   </td>
-   <td>
-   <div class="glossy-selectbox">
-    <input type="checkbox">
-    <label data-default="Share This Post!" data-focus="Select one of the social media service..."></label>
-    <ul>
-        <li><a href="#" target="_blank">서울2</a></li>
-        <li><a href="#" target="_blank">경기2</a></li>
-        <li><a href="#" target="_blank">강원2</a></li>
-        <li><a href="#" target="_blank">충북2</a></li>
-        <li><a href="#" target="_blank">충남2</a></li>
-        <li><a href="#" target="_blank">경북2</a></li>
-        <li><a href="#" target="_blank">경남2</a></li>
-        <li><a href="#" target="_blank">제주2</a></li>
-    </ul>
-	</div>
-	</td>
+	<center>
+	<table class="navi_table">
+	<th><div class="wrapper">
+			<div class="dropdownboxA">
+  			<p>where do you live?</p>
+			</div> 
+			<ul class="menuA">
+    			<li>서울</li>
+    			<li>경기</li>
+    			<li>강원</li>
+    			<li>충북</li>
+    			<li>충남</li> 
+    			<li>경북</li>
+    			<li>경남</li>
+			</ul>	
+			</div>
+	</th>
+	<th><div class="wrapperB">
+			<div class="dropdownboxB">
+  			<p>where do you live?</p>
+			</div> 
+			<ul class="menuB">
+    			<li>강동구</li>
+    			<li>강서구</li>
+    			<li>강남구</li>
+    			<li>강북구</li>
+    			<li>어이구</li> 
+			</ul>	
+			</div>
+	</th>
+	
+			
+	
+		
 	</table>
-</center>
+	</center>
   <!-- codepen 출처 셀박 끝 -->
   &nbsp;&nbsp;&nbsp;
-  
-  
-  
   
   
   <div class="w3-row-padding">
   <!-- 맵들어와라 -->
   <center>
-    <table id="map_table" border="2" width=1000 height=600>
+    <table class="map_table" >
     <tr>
     	<td align="center">Map 커져랏!!!
     		<div id="map"></div>
@@ -206,18 +291,26 @@ function initMap() {
   <!-- Contact Section -->
   <div class="w3-container w3-padding-32" id="contact">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-    <p>지랄도 풍년이네</p>
+    <p>과연 오나</p>
     <form action="/action_page.php" target="_blank">
-      <input class="w3-input" type="text" placeholder="Name" required name="Name">
-      <input class="w3-input w3-section" type="text" placeholder="Email" required name="Email">
-      <input class="w3-input w3-section" type="text" placeholder="Subject" required name="Subject">
-      <input class="w3-input w3-section" type="text" placeholder="Comment" required name="Comment">
+      <table>
+      <c:forEach var="vo" items="${glist }">
+      	<tr>
+      		<th>x: ${vo.x_p }</th>
+      	</tr>
+      	<tr>
+      		<th>y: ${vo.y_p }</th>
+      	</tr>
+      </c:forEach>
+      </table>
+      
+      
       <button class="w3-button w3-black w3-section" type="submit">
         <i class="fa fa-paper-plane"></i> SEND MESSAGE
       </button>
     </form>
   </div>
-  
+  	
 
 </div>
 	
