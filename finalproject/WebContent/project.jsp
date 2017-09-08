@@ -66,7 +66,7 @@
      <div class="w3-dropdown-hover">  
       <button class="w3-button">웨딩홀 검색</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="#" class="w3-bar-item w3-button">지도 검색</a>
+        <a href="project.jsp?mode=510" class="w3-bar-item w3-button">지도 검색</a>
         <a href="#" class="w3-bar-item w3-button">상세 검색</a>
         
       </div>
