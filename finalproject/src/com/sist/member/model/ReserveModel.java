@@ -13,8 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.*;
 import com.sist.member.*;
+import com.sist.wedding.dao.ComVO;
 
 public class ReserveModel {
+	
 	public void reserve_ok(ReserveVO vo, HttpServletResponse response) {
 		MemberDAO dao = new MemberDAO();
 		dao.reserveOk(vo);
@@ -22,14 +24,30 @@ public class ReserveModel {
 			response.sendRedirect("../project.jsp?mode=104");	
 		} catch (Exception e) {
 			System.out.println("reserve_ok():"+e.getMessage());
-		}
-		
+		}	
 	}
 	
-	/*public void reserveMain(HttpServletRequest request){
+	/*public void reservePage(HttpServletRequest request) {
+		MemberDAO dao = new MemberDAO();
+		HttpSession session=request.getSession();			 
+		 String id =(String)session.getAttribute("id");			 	 
+		 String strPage=request.getParameter("page");
+		 if(strPage==null)
+		 	strPage="1";
+		 int curpage=Integer.parseInt(strPage);
+		 int rowSize=5;
+		 int start=(curpage*rowSize)-(rowSize-1);
+		 int end=curpage*rowSize;
+		List<ComVO> list = dao.bkListData(id,start,end);
 		
-		//request.setAttribute("main_jsp", "../reserve/reserve_main.jsp");
+		double a = dao.totalBkData(id)/(double)rowSize; 
+		 int totalpage = (int) Math.ceil(a);
+		 request.setAttribute("hlist", list); 			  
+		 request.setAttribute("curpage", curpage);
+		 request.setAttribute("totalpage", totalpage);			
 	}*/
+	
+
 
 	public void reserveDate() {
 		System.out.println("¿Ï·á");
