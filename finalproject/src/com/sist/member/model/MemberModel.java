@@ -1,6 +1,7 @@
 
 package com.sist.member.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import com.sist.member.*;
 import com.sist.member.MemberDAO;
 import com.sist.member.MemberVO;
 import com.sist.wedding.dao.ComVO;
+import com.sist.wedding.dao.InnerHallVO;
 
 import javafx.scene.control.Alert;
 
@@ -22,7 +24,7 @@ import javafx.scene.control.Alert;
 public class MemberModel {
 	public void memberJoin(HttpServletRequest request)
 	  {
-		  request.setAttribute("main_jsp", "member/join.jsp");
+		  request.setAttribute("main_jsp", "join.jsp");
 	  }
 	
 	  public void memberIdCheck(HttpServletRequest request)
@@ -66,22 +68,23 @@ public class MemberModel {
 		  MemberDAO dao=new MemberDAO();
 		  dao.memberInsert(vo);
 		  try {
-			  response.sendRedirect("../project.jsp");
+			  response.sendRedirect("project.jsp");
 		  }catch(Exception ex) {
 			  System.out.println(ex.getMessage());
 		  }
 		  
 	  }
 	  public void memberUpdate(HttpServletRequest request) {
-		   request.setAttribute("main_jsp", "member/infoUpdate.jsp");
+		   request.setAttribute("main_jsp", "infoUpdate.jsp");
 		 }
 	  public void memberUpdateOk(MemberVO vo,HttpServletResponse response) {
 		  MemberDAO dao=new MemberDAO();
-		  dao.MemberUpdate(vo);
+		  
+		//dao.MemberUpdate(vo);
 		  
 		  try {
 			  
-			  response.sendRedirect("../project.jsp");
+			  response.sendRedirect("project.jsp");
 		  }catch(Exception ex) {
 			  System.out.println(ex.getMessage());
 		  }
@@ -112,66 +115,19 @@ public class MemberModel {
 			 int rowSize=5;
 			 int start=(curpage*rowSize)-(rowSize-1);
 			 int end=curpage*rowSize;
-			 /*map.put("start",start);
-			 map.put("end",end);*/
+
+//			 Map<String,List> map = dao.memberLikeData(id,start,end);
+//			 List<InnerHallVO> hlist = map.get("hlist");
+//			 List<ComVO> clist = map.get("clist");
 			 
-			// List<ComVO> list=dao.boardAllData(map);
-			// request.setAttribute("list", list);
-			 
-			 List<ComVO> list = dao.memberLikeData(id,start,end);
-			 
-			 double a = dao.numMemberLikeData(id)/(double)rowSize; 
-			// double b = dao.numMemberLikeData(id)/rowSize;
-			 int totalpage = (int) Math.ceil(a);
+			 List<InnerHallVO> hlist = dao.memberLikeData(id,start,end);
+			
+			 int totalpage = dao.totalpage(id);
 			 //System.out.println(totalpage);
-			 request.setAttribute("hlist", list); 			  
+			 request.setAttribute("hlist", hlist);
+	//		 request.setAttribute("clist", clist);
 			 request.setAttribute("curpage", curpage);
 			 request.setAttribute("totalpage", totalpage);
 	 }
-	  public void memberDelete(HttpServletRequest request) {
-		  request.setAttribute("main_jsp", "member/mem_delete.jsp");
-	  }
-	  public void memberDeleteOk(HttpServletRequest request,HttpServletResponse response) {
-		  	String strId=request.getParameter("mem_id");
-			String pwd=request.getParameter("mem_pw");
-			MemberDAO dao=new MemberDAO();
-			boolean bCheck=dao.memberDelete(strId, pwd);
-			try {
-				if(bCheck==true){
-					response.sendRedirect("../project.jsp");
-				}else{
-					response.sendRedirect("../main_content.jsp");		
-			  }
-			}catch(Exception ex) {
-				System.out.println(ex.getMessage());
-			}
-	  }
-	  public void admin(HttpServletRequest request) {
-		  MemberDAO dao=new MemberDAO();
-		  MemberVO vo=new MemberVO();
-		  String page=request.getParameter("page");
-			if(page==null)
-				page="1";
-		  int curpage=Integer.parseInt(page);
-		  List<MemberVO> list=dao.boardListData(curpage);
-		  int totalpage=dao.adminTotalPage();
-		  /*List<MemberVO> list=dao.boardListData(Integer.parseInt(strPage));*/
-		  request.setAttribute("list", list);
-		  request.setAttribute("curpage", curpage);
-		  request.setAttribute("totalpage", totalpage);
-		  request.setAttribute("vo", vo);
-		  request.setAttribute("main_jsp", "member/admin_mem.jsp");
-	  }
-	  public void adminDelete(HttpServletRequest request,HttpServletResponse response) {
-		  MemberDAO dao=new MemberDAO();
-		  String strId=request.getParameter("mem_id");
-		  dao.adminDelete(strId);
-		  try {
-			  response.sendRedirect("../project.jsp");
-		  }catch(Exception ex) {
-			  System.out.println(ex.getMessage());
-		  }
-		  
-	  } 
 	
 }
