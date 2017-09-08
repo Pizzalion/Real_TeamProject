@@ -4,6 +4,6 @@
 <mapper namespace="com.sist.mapsearch.dao.msc-mapper">
 	<select id="testGPS" resultType="MSCVO" parameterType="int">
 		SELECT com_no,x_p,y_p,com_name,com_addr
-		FROM sample_table WHERE com_no&lt;5 ORDER BY COM_NO ASC
+		FROM sample_table WHERE com_no&lt;20 ORDER BY COM_NO ASC
 	</select>
 </mapper>

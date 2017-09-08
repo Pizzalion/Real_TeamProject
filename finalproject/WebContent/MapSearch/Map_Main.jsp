@@ -6,8 +6,8 @@
 	request.setAttribute("glist", glist);
 	
 	int i=0;
-	String[] xp={"","","","","",""};
-	String[] yp={"","","","","",""};
+	String[] xp={"","","","","","","","","","","","","","","","","","","",""};
+	String[] yp={"","","","","","","","","","","","","","","","","","","",""};
 	
 	for(GPSVO vo : glist)
 	{
@@ -27,7 +27,8 @@
 	String y1 = yp[0];
 	
 %>
-<c:set var="list" value="<%=glist %>"/>
+<c:set var="xpoint" value="<%=xp %>"/>
+<c:set var="ypoint" value="<%=yp %>"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,12 +39,17 @@
     async defer></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script type="text/javascript">
+//스크립트로 바로 끌어드리는것은 방법이 없었음.
+//위도 배열(xpArray), 경도 배열(ypArray)을 선언하고 그곳에 순서대로 넣어서 매칭해주는게 최선~
 var markers=[];
-var iterator=0;
-var markerArray=[];
-var i=0;
+var markersArr=[];
+var xpArray=[];
+var ypArray=[];
+var ia=0;
+
 
 $(document).ready(function(){
+	
 	  $(".dropdownboxA").click(function(){
 	    $(".menuA").toggleClass("showMenu");
 	      $(".menuA > li").click(function(){
@@ -66,9 +72,26 @@ $(document).ready(function(){
 //맵 & 마커 표시 시작
 function initMap() {
 	
+	//위도배열, 경도배열 각각에 차례대로 넣기
+markersArr[0] = new google.maps.LatLng(<%=xp[0]%>,<%=yp[0]%>);
+markersArr[1] = new google.maps.LatLng(<%=xp[1]%>,<%=yp[1]%>);
+markersArr[2] = new google.maps.LatLng(<%=xp[2]%>,<%=yp[2]%>);
+markersArr[3] = new google.maps.LatLng(<%=xp[3]%>,<%=yp[3]%>);
+markersArr[4] = new google.maps.LatLng(<%=xp[4]%>,<%=yp[4]%>);
+markersArr[5] = new google.maps.LatLng(<%=xp[5]%>,<%=yp[5]%>);
+markersArr[6] = new google.maps.LatLng(<%=xp[6]%>,<%=yp[6]%>);
+markersArr[7] = new google.maps.LatLng(<%=xp[7]%>,<%=yp[7]%>);
+markersArr[8] = new google.maps.LatLng(<%=xp[8]%>,<%=yp[8]%>);
+markersArr[9] = new google.maps.LatLng(<%=xp[9]%>,<%=yp[9]%>);
+markersArr[10] = new google.maps.LatLng(<%=xp[10]%>,<%=yp[10]%>);
+	
+	
 	var test = {lat: 37.325845, lng: 127.154128}
 	var test2 = new google.maps.LatLng(37.575930,127.154545);
 	var test3 = new google.maps.LatLng(<%=x1%>,<%=y1%>);
+	
+	
+	
 	
 	var contentip='<div>'+'<h2>호텔이얌</h2>'+'<p>나왔으면 좋겠어</p>'+'<a href="http://www.naver.com">이동~</a>';
 	var infowindow = new google.maps.InfoWindow({
@@ -86,45 +109,27 @@ function initMap() {
   	title:'기준'
   });
   
-  var addmark = new google.maps.Marker({
-	  position: test2,
-	  title:'추가 마커'
-  });
-  var addmark2 = new google.maps.Marker({
-	  position: test3,
-	  title:'추가됨'
-  });
-  
-  var addmark3 = new google.maps.Marker({
-	  position: markers[0],
-	  title:'어디계십니까'
-  });
-  
-  var addmark4 = new google.maps.Marker({
-	  position:markers[1],
-	  title:'와주십시오'
-  });
-  
-  var addmark5 = new google.maps.Marker({
-	  position:markers[2],
-	  title:'설마 같은값 받냐'
-  });
+  	for(var i=0;i<10;i++)
+  	{
+  		var solomarker = new google.maps.Marker({
+  	 		position: markersArr[i],
+  	 		map:map,
+  	 		title:'빛이여'
+  	 	});	
+  	}
+   
+  	
+  	
 	//배열을 이용하여 마커 정보 input 및 뿌려주기
 	//구성필요
 	
-	
-	
 	addmark.setMap(map);
-	addmark2.setMap(map);
-	addmark3.setMap(map);
-	addmark4.setMap(map);
-	addmark5.setMap(map);
+	solomarker.setMap(map);	
 	google.maps.event.addListener(marker,'click',function(){
 		infowindow.open(map,marker);
 	});
 }
 //맵 & 마커 표시 끝
-
 
 
 
