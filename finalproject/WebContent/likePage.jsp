@@ -26,9 +26,9 @@ $(function(){
 	$('.unlike').click(function(){
        //var id = $(this).attr('idd');
        //alert('취소');
-	   var com_no = $(this).attr('no');
+	   var hall_no = $(this).attr('no');
        //action
-	   $('#cancel'+com_no).submit();
+	   $('#cancel'+hall_no).submit();
        //alert('취소하시면 사라집니다.');		
 	});
 	$('.bookBtn').click(function(){
@@ -75,48 +75,52 @@ $(function(){
 			</tr>
 		<c:forEach var="vo" items="${hlist }" >
 	        <tr class='dataTr' >			
-				<td align=center class=dataTd id="td1_${vo.com_no }" value="${vo.com_no }">
+				<td align=center class=dataTd id="td1_${vo.hall_no }" value="${vo.hall_no }">
 					<%-- <input type=hidden value="${vo.com_no }"> --%>
 					<img width=200 alt="그림없음" src="${vo.com_pic }">
 				</td>
-				<td class=dataTd id="tr2_${vo.com_no }" value="${vo.com_no }"> 
-					 <h4>${vo.com_name }</h4>
+				<td class=dataTd id="tr2_${vo.hall_no }" value="${vo.com_no }"> 
+					 <h4>${vo.com_name}</h4>
+					 <h6>${vo.hall_name}</h6>
 					  주소: ${vo.com_address }<br/>
 					  식대: ${vo.com_meal }<br/>
-				 	 인원: ${vo.com_person }<br/>
+				 	  인원: ${vo.hall_people }<br/>
+				 	  시간: ${vo.hall_time }
 				</td>
 				<td align=center>
 					<!-- <a href="#" ></a> -->
-					<img alt="예약상담신청" src="images/heart.PNG" width="50" height="30" class="bookBtn" value="${vo.com_no }">
+					<img alt="예약상담신청" src="images/heart.PNG" width="50" height="30" class="bookBtn" value="${vo.hall_no}">
 				
 				</td>
 				<td align=center>
-					<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.com_no }" >
-                	<input type="hidden" name=no value="${vo.com_no }">
+					<form method="post" action="likeCancel_ok.jsp" id="cancel${vo.hall_no }" >
+                	<input type="hidden" name=no value="${vo.hall_no }">
                 	<%-- <input type="hidden" name=mem_id value="${ }"> --%>
                 	</form>
-					<input type="button" class="unlike" value="취소" no=${vo.com_no }>
+					<input type="button" class="unlike" value="취소" no=${vo.hall_no }>
 				</td>
 			</tr>
 
-					<tr id="okTr${vo.com_no }" style="display: none">
+					<tr id="okTr${vo.hall_no }" style="display: none">
 						<td align=center colspan=4>
-						   <form action="reserve/reserve_ok.jsp" method="post" id="test${vo.com_no }">
+						   <form action="reserve/reserve_ok.jsp" method="post" id="test${vo.hall_no }">
 							<table id=none>
 								<tr>
 									<td>
-									<input type=hidden name=hall_no value="${vo.com_no }">
+									<input type=hidden name=hall_no value="${vo.hall_no}">
 									<input type=hidden name=mem_id>
 									<label for="cdate">희망상담일 : </label> 
 									<input type=date name="bk_cday" id="consultDate" required></td>
 									<td rowspan=2><label for="bk_ask">문의사항 :<br /></label></td>
 									<td rowspan=2><textarea name="bk_ask" width=200></textarea>
 									</td>
-									<td rowspan=2><input type=button class="reserveBtn" value=확인 no="${vo.com_no }"></td>
+									<td rowspan=2><input type=button class="reserveBtn" value=확인 no="${vo.hall_no}"></td>
 								</tr>
 								<tr>
 									<td><label for="bdate">행사예정일 : </label> 
-									<input type=date name="bk_dday" id="bookDate" required></td>
+									<input type=date name="bk_dday" id="bookDate" required>
+									<input type=hidden name=com_no value="${vo.com_no }">
+									</td>								
 								</tr>
 							</table>
 						   </form>	
@@ -124,7 +128,6 @@ $(function(){
 					</tr>
 				</c:forEach>
 		</table>
- 
  </div>
  <div>
   <br/>

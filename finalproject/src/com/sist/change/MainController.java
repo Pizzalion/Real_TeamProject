@@ -1,12 +1,11 @@
 package com.sist.change;
-//이게 떠야된다고요
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.sist.main.model.CompanyModel;
 import com.sist.main.model.RankingModel;
 import com.sist.member.model.*;
 import com.sist.model.MapSearchModel;
-import com.sist.wedding.manager.ReviewModel;
 
 
 
@@ -15,7 +14,7 @@ public class MainController {
 		RankingModel rm=new RankingModel();
 		CompanyModel cm=new CompanyModel();
 		MemberModel mm=new MemberModel();
-		ReviewModel rvm=new ReviewModel();
+		ReserveModel rsm = new ReserveModel(); 
 		MapSearchModel msm = new MapSearchModel();
 		String mode=request.getParameter("mode");
 		//기능 분리
@@ -32,44 +31,27 @@ public class MainController {
 		case 2:
 			mm.memberJoin(request);
 			break;
-		case 3:
-			mm.memberUpdate(request);
-			break;
-		case 4:
-			mm.memberDelete(request);
-			break;
-		case 5:
-			mm.admin(request);
-			break;
-		/*case 6:
-			mm.adminDelete(request);
-			break;*/
-			
 		case 103:
 			mm.memberUpdate(request);
 			break;
 		case 104:
 			mm.likepage(request);
 			break;
-		case 200:
-			rvm.ReviewAllData(request);
-			break;
-		case 201:
-			rvm.WeddingDetailData(request);
+		case 105:
+			rsm.reservePage(request);
 			break;	
-		case 300:
-			rvm.ReviewListData(request);
-			rm.rankingMainListData(request);
-			return;
-		case 301:
-			cm.companyDetailData(request);
-			break;
+
 
 
 		case 510:				//지도추가했습니다.
 			msm.MapSearch(request);
 			break;
-		
+		case 300:
+			rm.rankingMainListData(request);
+			return;
+		case 301:
+			cm.companyDetailData(request);
+			break;
 		}
 	}
 }
