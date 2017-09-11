@@ -46,7 +46,7 @@ var markersArr=[];
 var xpArray=[];
 var ypArray=[];
 var ia=0;
-
+var sArr = ["강남구","강동구","강북구","강서구","관악구","서초구","성북구","중랑구"];
 
 $(document).ready(function(){
 	
@@ -131,6 +131,14 @@ markersArr[10] = new google.maps.LatLng(<%=xp[10]%>,<%=yp[10]%>);
 }
 //맵 & 마커 표시 끝
 
+//리스트 값 가져오기
+$(function(){
+	var list1="", list2="",list3="";
+	$('.menuA .city').click(function(){
+		list1=$(this).text();
+		$('.println').text(list1);
+	});
+});
 
 
 
@@ -185,7 +193,7 @@ markersArr[10] = new google.maps.LatLng(<%=xp[10]%>,<%=yp[10]%>);
       </div>
     </div>
   </div>
- 
+  <div class="println"></div>
   <center>여기야</center>
   
   <!-- codepen 출처 셀박 -->
@@ -196,13 +204,13 @@ markersArr[10] = new google.maps.LatLng(<%=xp[10]%>,<%=yp[10]%>);
   			<p>where do you live?</p>
 			</div> 
 			<ul class="menuA">
-    			<li>서울</li>
-    			<li>경기</li>
-    			<li>강원</li>
-    			<li>충북</li>
-    			<li>충남</li> 
-    			<li>경북</li>
-    			<li>경남</li>
+    			<li class="city">서울</li>
+    			<li class="city">경기</li>
+    			<li class="city">강원</li>
+    			<li class="city">충북</li>
+    			<li class="city">충남</li> 
+    			<li class="city">경북</li>
+    			<li class="city">경남</li>
 			</ul>	
 			</div>
 	</th>
@@ -211,11 +219,11 @@ markersArr[10] = new google.maps.LatLng(<%=xp[10]%>,<%=yp[10]%>);
   			<p>where do you live?</p>
 			</div> 
 			<ul class="menuB">
-    			<li>강동구</li>
-    			<li>강서구</li>
-    			<li>강남구</li>
-    			<li>강북구</li>
-    			<li>어이구</li> 
+    			<li class=gugun>강동구</li>
+    			<li class=gugun>강서구</li>
+    			<li class=gugun>강남구</li>
+    			<li class=gugun>강북구</li>
+    			<li class=gugun>어이구</li> 
 			</ul>	
 			</div>
 	</th>
