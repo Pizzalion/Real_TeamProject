@@ -12,16 +12,17 @@
 	
 	<div class="w3-row-padding w3-grayscale" style="width:75%; margin-left:200px"  >
 	<h2>웨딩홀 회원 리뷰</h2>
-	<p>총 1,073건의 검색결과</p><p align="right">최신순 | 조회순 | 평점순</p>
+	<p>총 1,073건의 검색결과</p><p align="right">
+	<a href="#">최신순 </a>|<a href="#"> 조회순 </a> | <a href="#">평점순</p></a>
 		<ul class="w3-ul w3-card-4">
 			  <c:forEach var="vo" items="${rAllList }">  
 
 				<li class="w3-bar" style="height: 180px">
-				<span onclick="this.parentElement.style.display='none'"
+				<!-- <span onclick="this.parentElement.style.display='none'"
 					class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×
-					</span>
+					</span> -->
 					 <!-- 홀목록=>hover효과주기 --> 
-					
+					<!-- 여기에 list를 셋어트리뷰투 -->
 					 <a href="project.jsp?mode=201&com_no=${vo.com_no }">
 					    <div style="width: 200px">
 							<img src="${vo.img_src }"

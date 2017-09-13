@@ -19,13 +19,14 @@ public class ReviewModel {
 		page="1";
 	int curpage=Integer.parseInt(page);
 	
+	
+	
 	WeddingDAO dao=new WeddingDAO();
-	List<ReviewVO> rList=dao.reviewListData(curpage, 4);		
+	List<ReviewVO> rList=dao.reviewListData(curpage, 4,"img_no");		
 	int totalpage=dao.reviewTotalPage();
 	
 	
 	String com_no=request.getParameter("com_no");	
-	System.out.println(com_no);
 
 	request.setAttribute("rList", rList);
 	request.setAttribute("curpage", curpage);
@@ -38,13 +39,25 @@ public class ReviewModel {
 	
 	public void ReviewAllData(HttpServletRequest request) {
 		String page=request.getParameter("page");
+		//String revOrder=request.getParameter("rOrder");
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
-		WeddingDAO dao=new WeddingDAO();
-		List<ReviewVO> rAllList=dao.reviewListData(curpage, 10);
-		int totalpage=dao.reviewTotalPage();
 		
+	/*	String rOder=request.getParameter("revOrder");
+		if(revOrder=="rk") {
+			revOrder="com_no";
+		}else if(rOder=="rh"){
+			revOrder="review_title";
+		}else if(rOder=="rs") {
+			revOrder="review_no";
+		}*/
+		WeddingDAO dao=new WeddingDAO(); 
+		//com_no는 랭킹순, review_title 은 이름순, review_no는 최신순
+		List<ReviewVO> rAllList=dao.reviewListData(curpage, 10, "img_no");
+		int totalpage=dao.reviewTotalPage();
+		/*리뷰 출력 */
+	
 		request.setAttribute("rAllList", rAllList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
@@ -83,5 +96,14 @@ public class ReviewModel {
 	
 	}
 
+/*	public void EstiDetailData(HttpServletRequest request) {
+		String hall_no = request.getParameter("hall_no");
+		WeddingDAO dao = new WeddingDAO();
+		ComVO vo = dao.WeddingDetailData(Integer.parseInt(hall_no));
+		
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "/estimate/estiDetail.jsp");
+
+	}*/
 	
 }
