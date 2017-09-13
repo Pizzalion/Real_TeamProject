@@ -50,6 +50,13 @@ public class ReserveModel {
 		 request.setAttribute("totalpage", totalpage);
 	}
 	
+	//취소
+	 public void cancelReserve(HttpServletRequest request) {
+		 ReserveDAO dao =new ReserveDAO();
+		 String bno=(String)request.getParameter("no");
+		 dao.deleteBookData(bno);
+	 }
+	
 
 	public void reserveDate() {
 		System.out.println("완료");

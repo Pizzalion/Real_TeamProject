@@ -33,7 +33,7 @@ $(function(){
 	//취소
 	$('.unlike').click(function(){   
 	   var bk_no = $(this).attr('value');    
-	   $('#cancel'+bk_no).submit();     
+	   $('#bkcancel'+bk_no).submit();     
 	});
 	//상세보기
 	$('.w3-bar').click(function(){
@@ -50,22 +50,25 @@ $(function(){
  <center>
 
 
-<div style="display:inline; float:none;">
+<div style="display:inline; float:none;" >
  <div class="w3-container" >
   <h2>예약페이지</h2>
   <p>추천서비스도 함께 보시면 더욱 좋아요:)</p>
-  <ul class="w3-ul w3-card-4">
+  <hr>
+  
+  <ul class="w3-ul w3-card-4" width="600">
   
   <c:forEach var="vo" items="${hlist }" > 
    <c:forEach var = "vo2" items="${rlist }"> 
     <c:if test="${vo.hall_no==vo2.hall_no }">
-     <form method="post" action="reserve/bookCancel.jsp">
+     <form method="post" action="reserve/bookCancel.jsp" id="bkcancel${vo2.bk_no }">
       <li class="w3-bar" value="${vo.com_no }">	      
+      <input type="hidden" value="${vo2.bk_no }">
       <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">
-        <span src="" value="${vo2.bk_no }" class="unlike"> 삭제 </span>
+        <span value="${vo2.bk_no }" class="unlike"> x </span>
         <%-- <img src="" value="${vo2.bk_no }" class="unlike"> --%>
       </span>
-      <img src="${vo.com_pic }" class="w3-bar-item w3-circle w3-hide-small" style="width:200px">
+      <img src="${vo.com_pic }" class="w3-bar-item w3-hide-small" style="width:200px">
       <div class="w3-bar-item" align=left>
          <span class="w3-large">${vo.com_name}</span><br>
          <span>${vo.hall_name}</span><br/>
@@ -77,16 +80,14 @@ $(function(){
     </form>
     </c:if>
    </c:forEach>
-  </c:forEach>
-    
+  </c:forEach>    
   </ul>
 </div>
+</div>
  
- 
- <div>  
+
+ <div height = 100 margin=100>
  <br/> <br/>
- </div>
- <div height = 100 margin=20>
  <a href="project.jsp?mode=105&page=${curpage>1?curpage-1:curpage }">
  <img src="images/back.png" id=pagebtn width=20 ></a>
  ${curpage } 페이지 / ${totalpage } 페이지 
@@ -94,7 +95,9 @@ $(function(){
 <img src="images/next.png" id=pagebtn width=20 ></a>
 <br/> <br/>
 </div>
-</div>
+
+ 
+
 
 <div style="display:inline-block;">
 <div class="w3-container" width=300 >

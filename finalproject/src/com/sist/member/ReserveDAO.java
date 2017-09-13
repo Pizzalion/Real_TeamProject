@@ -143,43 +143,17 @@ public class ReserveDAO {
 			return totalpage;
 		} 
 	   
-	public void deleteLikeData(String id, String com_no) {
+	public void deleteBookData(String bk_no) {
 		try {
 			getConnection();
-			String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";
+			String sql = "DELETE FROM bk_table WHERE bk_no=? ";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, id);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			String data = rs.getString(1);
-			rs.close();
-			ps.close();
-			String[] tmp = data.split(",");
-			System.out.println("추출완료");
-
-			//리스트 새로 만들기
-			String str="";
-			for (String s : tmp) {				
-				if (s.equals(com_no)) {
-					//배열에서 해당문자만 삭제하기
-				    System.out.println("삭제완료");					
-				}else {
-					str=str+","+s;
-				}				
-			}
-			str = str.substring(1);
-			System.out.println(str);
-			//리스트 db반영하기
-			sql = "UPDATE  member_table SET mem_likelist=? where mem_id=?";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, str);
-			ps.setString(2, id);			
-			ps.executeUpdate();
-			ps.close();
-			System.out.println("수정완료");
-			
+			ps.setString(1, bk_no);
+			ps.executeUpdate();			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		}finally {
+			disConnection();
 		}
 
 	}
