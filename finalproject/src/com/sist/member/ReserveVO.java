@@ -5,7 +5,14 @@ import java.util.Date;
 public class ReserveVO {
 	private int bk_no,hall_no;
 	private String bk_cday,bk_dday;
-	private String mem_id, bk_ask,bk_type;
+	private String mem_id, bk_ask,bk_type, regdate;
+	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	public int getBk_no() {
 		return bk_no;
 	}

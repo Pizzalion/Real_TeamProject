@@ -14,11 +14,14 @@ import javax.servlet.http.HttpSession;
 import com.sist.*;
 import com.sist.member.*;
 import com.sist.wedding.dao.ComVO;
+import com.sist.wedding.dao.InnerHallVO;
 
 public class ReserveModel {
-	
+	public void reservePage(HttpServletRequest request) {
+		request.setAttribute("main_jsp", "reserve/reservepage.jsp");
+	}
 	public void reserve_ok(ReserveVO vo, HttpServletResponse response) {
-		MemberDAO dao = new MemberDAO();
+		ReserveDAO dao = new ReserveDAO();
 		dao.reserveOk(vo);
 		try {
 			response.sendRedirect("../project.jsp?mode=104");	
@@ -26,11 +29,10 @@ public class ReserveModel {
 			System.out.println("reserve_ok():"+e.getMessage());
 		}	
 	}
-	
-	/*public void reservePage(HttpServletRequest request) {
-		MemberDAO dao = new MemberDAO();
-		HttpSession session=request.getSession();			 
-		 String id =(String)session.getAttribute("id");			 	 
+	public void getBookData(HttpServletRequest request) {
+		 ReserveDAO dao = new ReserveDAO();
+		 HttpSession session=request.getSession();			 
+		 String id =(String)session.getAttribute("id");			  
 		 String strPage=request.getParameter("page");
 		 if(strPage==null)
 		 	strPage="1";
@@ -38,16 +40,23 @@ public class ReserveModel {
 		 int rowSize=5;
 		 int start=(curpage*rowSize)-(rowSize-1);
 		 int end=curpage*rowSize;
-		List<ComVO> list = dao.bkListData(id,start,end);
-		
-		double a = dao.totalBkData(id)/(double)rowSize; 
-		 int totalpage = (int) Math.ceil(a);
-		 request.setAttribute("hlist", list); 			  
-		 request.setAttribute("curpage", curpage);
-		 request.setAttribute("totalpage", totalpage);			
-	}*/
+		 List<ReserveVO> rlist = dao.memberBookInfo(id,start,end);
+		 List<InnerHallVO> hlist = dao.memberBookData(id,start,end);
+		 int totalpage = dao.totalpage(id);
 	
-
+		 request.setAttribute("rlist", rlist);
+		 request.setAttribute("hlist", hlist);
+		 request.setAttribute("curpage", curpage);
+		 request.setAttribute("totalpage", totalpage);
+	}
+	
+	//취소
+	 public void cancelReserve(HttpServletRequest request) {
+		 ReserveDAO dao =new ReserveDAO();
+		 String bno=(String)request.getParameter("no");
+		 dao.deleteBookData(bno);
+	 }
+	
 
 	public void reserveDate() {
 		System.out.println("완료");
