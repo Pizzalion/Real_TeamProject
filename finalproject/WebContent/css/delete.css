@@ -2,14 +2,32 @@
 #form{
 	width:900px;
 }
-#tal{
+#subject{
 	text-align: left;
+ 	font: italic;
+ 	font-weight: bold;
+ 	font-size: 30px;
+ 	
 }
 table ul li{
 	list-style-type: none;
 }
 #table{
-	border-bottom: 3px solid #ededed;
-	border-top: 3px solid #ededed;
-	background-color: #ededed;
+	border-bottom: 3px solid #c0c0c0;
+	border-top: 3px solid #c0c0c0;
+	background-color: #f1f3e7;
+}
+#table span{
+	color:#ff8000;
+	text-align: center;
+}
+#delForm{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#sub{
+	font-weight: bold;
+}
+#form #top{
+	border-bottom: 1px solid #000000;
 }

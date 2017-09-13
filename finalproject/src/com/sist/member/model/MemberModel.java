@@ -162,9 +162,10 @@ public class MemberModel {
 	  public void memberPwdSearch(HttpServletRequest request)
 	  {
 		  String mem_id=request.getParameter("id");
-		  String mem_name=request.getParameter("name");
+		  String mem_question=request.getParameter("question");
+		  String mem_answer=request.getParameter("answer");
 		  MemberDAO dao=new MemberDAO();
-		  String data=dao.memberPwdSearch(mem_id,mem_name);
+		  String data=dao.memberPwdSearch(mem_id,mem_question,mem_answer);
 		  request.setAttribute("data", data);
 	  }
 }
