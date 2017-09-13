@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -24,7 +22,7 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 public class MemberDAO {
 	private Connection conn;
 	   private PreparedStatement ps;
-	   //DB ø¨∞· ==> ¡÷º“∞™ æÚ±‚  
+	   //DB Ïó∞Í≤∞ ==> Ï£ºÏÜåÍ∞í ÏñªÍ∏∞  
 	   /*
 	    *   A a=new A();
 	    *   bind("aaa",a)
@@ -37,27 +35,27 @@ public class MemberDAO {
 	   {
 		   try // RMI
 		   {
-			   // ¿Ã∏ß ¿˙¿Â => ∞¥√º ¿Ã∏ß  Connection ¡÷º“∞™ 
+			   // Ïù¥Î¶Ñ Ï†ÄÏû• => Í∞ùÏ≤¥ Ïù¥Î¶Ñ  Connection Ï£ºÏÜåÍ∞í 
 			   /*
 			    *  ===================== java://env/comp  JNDI
 			    *   =========jdbc/oracle
-			    *   ¿Ã∏ß      ¡÷º“
-			    *   =========  ==> µ∑∫≈‰∏Æ
+			    *   Ïù¥Î¶Ñ      Ï£ºÏÜå
+			    *   =========  ==> ÎîîÎ†âÌÜ†Î¶¨
 			    *  ===================== 
 			    */
-			   Context init=new InitialContext();//≈Ωªˆ±‚ ø≠±‚ 
-	           // c µÂ∂Û¿Ã∫Í
+			   Context init=new InitialContext();//ÌÉêÏÉâÍ∏∞ Ïó¥Í∏∞ 
+	           // c ÎìúÎùºÏù¥Î∏å
 	           Context root=(Context)init.lookup("java://comp/env");
-			   // ø¯«œ¥¬ ∆˙¥ı 
+			   // ÏõêÌïòÎäî Ìè¥Îçî 
 	           DataSource ds=(DataSource)root.lookup("jdbc/oracle");
 			   conn=ds.getConnection();
-			   // lookup ==> ¿Ã∏ß¿∏∑Œ ∞¥√º¡÷º“∏¶ √£¿ª ∂ß ªÁøÎ«œ¥¬ ∏ﬁº“µÂ 
+			   // lookup ==> Ïù¥Î¶ÑÏúºÎ°ú Í∞ùÏ≤¥Ï£ºÏÜåÎ•º Ï∞æÏùÑ Îïå ÏÇ¨Ïö©ÌïòÎäî Î©îÏÜåÎìú 
 		   }catch(Exception ex)
 		   {
 			   System.out.println(ex.getMessage());
 		   }
 	   }
-	   // ø¨∞· ¡æ∑· ==> π›»Ø 
+	   // Ïó∞Í≤∞ Ï¢ÖÎ£å ==> Î∞òÌôò 
 	   public void disConnection()
 	   {
 		   try
@@ -155,7 +153,7 @@ public class MemberDAO {
 	   {
 		   try
 		   {
-			   // Connection¡÷º“ æÚ±‚ SELECT NVL(MAX(mem_no)+1,1) FROM member_table)
+			   // ConnectionÏ£ºÏÜå ÏñªÍ∏∞ SELECT NVL(MAX(mem_no)+1,1) FROM member_table)
 			   getConnection();
 			   String sql="INSERT INTO member_table VALUES("
 					     +"( SELECT NVL(MAX(mem_no)+1,1) FROM member_table) ,?,?,?,?,?,?,0,0,?,?)";
@@ -180,7 +178,7 @@ public class MemberDAO {
 		   }
 		   finally
 		   {
-			   disConnection();//π›»Ø
+			   disConnection();//Î∞òÌôò
 		   }
 	   }
 	   public MemberVO isLogin(String mem_id,String mem_pw)
@@ -189,7 +187,7 @@ public class MemberDAO {
 		   try
 		   {
 			   getConnection();
-			   //ID√º≈© 
+			   //IDÏ≤¥ÌÅ¨ 
 			   String sql="SELECT COUNT(*) "
 					     +"FROM member_table "
 					     +"WHERE mem_id=?";
@@ -205,7 +203,7 @@ public class MemberDAO {
 			   }
 			   else
 			   {
-				  sql="SELECT mem_id,mem_name,mem_type,mem_pw "
+				  sql="SELECT mem_id,mem_name,mem_type,mem_pw,mem_birth,mem_sex "
 				     +"FROM member_table "
 					 +"WHERE mem_id=?";
 				  ps=conn.prepareStatement(sql);
@@ -216,6 +214,8 @@ public class MemberDAO {
 				  vo.setMem_name(rs.getString(2));
 				  vo.setMem_type(rs.getString(3));
 				  String db_pwd=rs.getString(4);
+				  vo.setMem_birth(rs.getString(5));
+				  vo.setMem_sex(rs.getString(6));
 				  if(db_pwd.equals(mem_pw))
 				  {
 					  vo.setMsg("OK");
@@ -225,7 +225,7 @@ public class MemberDAO {
 					  vo.setMsg("NOPWD");
 				  }
 			   }
-			   //PWD√º≈© 
+			   //PWDÏ≤¥ÌÅ¨ 
 		   }catch(Exception ex)
 		   {
 			   System.out.println(ex.getMessage());
@@ -285,6 +285,7 @@ public class MemberDAO {
 			}		
 			return vo;
 		}
+
 	 
 	   public List<String> mem_likelist(String id){
 		   List<String> hallNoList = new ArrayList<>();
@@ -298,7 +299,7 @@ public class MemberDAO {
 			String data = rs.getString(1);
 			rs.close();
 			ps.close();
-			String[] tmp1 = data.split(",");//System.out.println("√ﬂ√‚øœ∑·");
+			String[] tmp1 = data.split(",");//System.out.println("Ï∂îÏ∂úÏôÑÎ£å");
 			hallNoList = Arrays.asList(tmp1);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -404,7 +405,7 @@ public class MemberDAO {
 			return hlist_;
 		} 
 	   
-	   public int totalpage(String id) {//totalpage ±∏«œ±‚ ¿ß«— ¿€æ˜
+	   public int totalpage(String id) {//totalpage Íµ¨ÌïòÍ∏∞ ÏúÑÌïú ÏûëÏóÖ
 			int totalpage=0;		
 			double rowSize=5;
 			try {
@@ -418,7 +419,7 @@ public class MemberDAO {
 				rs.close();
 				ps.close();
 				String[] tmp = data.split(",");
-				//System.out.println("√ﬂ√‚øœ∑·");
+				//System.out.println("Ï∂îÏ∂úÏôÑÎ£å");
 				int total = tmp.length	;			
 				double a = (double)total/rowSize; 
 				totalpage = (int)Math.ceil(a);	
@@ -431,6 +432,8 @@ public class MemberDAO {
 			return totalpage;
 		} 
 	   
+
+
 	public void deleteLikeData(String id, String com_no) {
 		try {
 			getConnection();
@@ -443,28 +446,28 @@ public class MemberDAO {
 			rs.close();
 			ps.close();
 			String[] tmp = data.split(",");
-			System.out.println("√ﬂ√‚øœ∑·");
+			System.out.println("Ï∂îÏ∂úÏôÑÎ£å");
 
-			//∏ÆΩ∫∆Æ ªı∑Œ ∏∏µÈ±‚
+			//Î¶¨Ïä§Ìä∏ ÏÉàÎ°ú ÎßåÎì§Í∏∞
 			String str="";
 			for (String s : tmp) {				
 				if (s.equals(com_no)) {
-					//πËø≠ø°º≠ «ÿ¥ÁπÆ¿⁄∏∏ ªË¡¶«œ±‚
-				    System.out.println("ªË¡¶øœ∑·");					
+					//Î∞∞Ïó¥ÏóêÏÑú Ìï¥ÎãπÎ¨∏ÏûêÎßå ÏÇ≠Ï†úÌïòÍ∏∞
+				    System.out.println("ÏÇ≠Ï†úÏôÑÎ£å");					
 				}else {
 					str=str+","+s;
 				}				
 			}
 			str = str.substring(1);
 			System.out.println(str);
-			//∏ÆΩ∫∆Æ dbπ›øµ«œ±‚
+			//Î¶¨Ïä§Ìä∏ dbÎ∞òÏòÅÌïòÍ∏∞
 			sql = "UPDATE  member_table SET mem_likelist=? where mem_id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, str);
 			ps.setString(2, id);			
 			ps.executeUpdate();
 			ps.close();
-			System.out.println("ºˆ¡§øœ∑·");
+			System.out.println("ÏàòÏ†ïÏôÑÎ£å");
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -473,58 +476,160 @@ public class MemberDAO {
 	}
 	
 
-/*	 public List<ComVO> bkListData(String id, int start, int end) {
-			// 1.»∏ø¯≈◊¿Ã∫Ìø°º≠
-			List<ComVO> list = new ArrayList<ComVO>();
-			try {
-				getConnection();
-				
-			String sql = "SELECT com_name,com_address,com_pic,com_meal,com_person "
-					+ "FROM com_table WHERE com_no=?";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, id);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			
-			ComVO vo = new ComVO();
-			vo.setCom_no(1);
-			//System.out.println(vo.getCom_no());
-			vo.setCom_name(rs.getString(1));
-			vo.setCom_address(rs.getString(2));
-			vo.setCom_pic(rs.getString(3));
-			vo.setCom_meal(rs.getString(4));
-			vo.setCom_person(rs.getString(5));
-			list.add(vo);
-			rs.close();				
-				} catch (Exception ex) {
-				System.out.println(ex.getMessage());
-			} finally {
-				disConnection();				
-			}		
-			return list;
-		} 
-	   public int totalBkData(String id) {
-			int total=0;			
-			try {
-				getConnection();
-				String sql = "SELECT mem_likelist FROM member_table WHERE mem_id=?";				
-				ps = conn.prepareStatement(sql);
-				ps.setString(1, id);
-				ResultSet rs = ps.executeQuery();
-				rs.next();
-				String data = rs.getString(1);
-				rs.close();
-				ps.close();
-				String[] tmp = data.split(",");
-				//System.out.println("√ﬂ√‚øœ∑·");
-				total = tmp.length	;			
-				System.out.println(total);			
-				} catch (Exception ex) {
-				System.out.println(ex.getMessage());
-			} finally {
-				disConnection();				
-			}		
-			return total;
-		}*/ 
-	   
+
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}finally {
+			disConnection();
+		}
+		return bCheck;
+	}
+   public List<MemberVO> boardListData(int page)
+   {
+ 	  List<MemberVO> list=new ArrayList<MemberVO>();
+ 	  try
+ 	  {
+ 		  getConnection();
+           int rowSize=10;
+           int start=(rowSize*page)-(rowSize-1);
+           // 1 11 21 31
+           int end=rowSize*page;
+           String sql="SELECT mem_no,mem_id,mem_name,mem_sex,mem_birth,mem_email,mem_type,num "
+        		    +"FROM (SELECT mem_no,mem_id,mem_name,mem_sex,mem_birth,mem_email,mem_type,rownum as num "
+        		    +"FROM (SELECT mem_no,mem_id,mem_name,mem_sex,mem_birth,mem_email,mem_type "
+        		    +"FROM member_table ORDER BY mem_no DESC)) "
+        		    +"WHERE num BETWEEN "+start+" AND "+end;
+           ps=conn.prepareStatement(sql);
+           ResultSet rs=ps.executeQuery();
+           while(rs.next())
+           {
+         	  MemberVO vo=new MemberVO();
+         	  vo.setMem_no(rs.getInt(1));
+         	  vo.setMem_id(rs.getString(2));
+         	  vo.setMem_name(rs.getString(3));
+         	  vo.setMem_sex(rs.getString(4));
+         	  vo.setMem_birth(rs.getString(5));
+         	  vo.setMem_email(rs.getString(6));
+         	  vo.setMem_type(rs.getString(7));
+         	  list.add(vo);
+           }
+           rs.close();
+ 	  }catch(Exception ex)
+ 	  {
+ 		  System.out.println(ex.getMessage());
+ 	  }
+ 	  finally
+ 	  {
+ 		  disConnection();
+ 	  }
+ 	  return list;
+   }
+   public int adminTotalPage()
+   {
+ 	  int total=0;
+ 	  try
+ 	  {
+ 		  getConnection();
+ 		  String sql="SELECT CEIL(COUNT(*)/10) FROM member_table";
+ 		  ps=conn.prepareStatement(sql);
+ 		  ResultSet rs=ps.executeQuery();
+ 		  rs.next();
+ 		  total=rs.getInt(1);
+ 		  rs.close();
+ 	  }catch(Exception ex)
+ 	  {
+ 		  System.out.println(ex.getMessage());
+ 	  }
+ 	  finally
+ 	  {
+ 		  disConnection();
+ 	  }
+ 	  return total;
+   }
+   public int adminRowCount()
+   {
+ 	  int total=0;
+ 	  try
+ 	  {
+ 		  getConnection();
+ 		  String sql="SELECT COUNT(*) FROM member_table";
+ 		  ps=conn.prepareStatement(sql);
+ 		  ResultSet rs=ps.executeQuery();
+ 		  rs.next();
+ 		  total=rs.getInt(1);
+ 		  rs.close();
+ 	  }catch(Exception ex)
+ 	  {
+ 		  System.out.println(ex.getMessage());
+ 	  }
+ 	  finally
+ 	  {
+ 		  disConnection();
+ 	  }
+ 	  return total;
+   }
+   public int adminDelete(String mem_id) {
+		int result=0;
+	   try {
+			getConnection();
+			String sql="DELETE FROM member_table WHERE mem_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, mem_id);
+			result=ps.executeUpdate();
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}finally {
+			disConnection();
+		}
+		return result;
+	}  
+   public String memberIdSearch(String mem_email){
+	   String data="";
+	   try
+	   {
+		   getConnection();
+		   String sql="SELECT mem_id "
+				     +"FROM member_table "
+				     +"WHERE mem_email=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, mem_email);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   data=rs.getString(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   System.out.println(ex.getMessage());
+	   }
+	   finally
+	   {
+		   disConnection();
+	   }
+	   return data;
+   }
+   public String memberPwdSearch(String mem_id,String mem_name){
+	   String data="";
+	   try
+	   {
+		   getConnection();
+		   String sql="SELECT mem_pw "
+				     +"FROM member_table "
+				     +"WHERE mem_id=? and mem_name=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, mem_id);
+		   ps.setString(2, mem_name);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   data=rs.getString(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   System.out.println(ex.getMessage());
+	   }
+	   finally
+	   {
+		   disConnection();
+	   }
+	   return data;
+   }
 }

@@ -6,15 +6,21 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/join.css">
-<link rel="stylesheet" type="text/css" href="shadow/css/shadowbox.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="shadow/js/shadowbox.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+<style>
+@import "table.css"
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="shadow/css/shadowbox.css"> -->
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
+<!-- <script type="text/javascript" src="shadow/js/shadowbox.js"></script> -->
 <script type="text/javascript">
-Shadowbox.init({
+/* Shadowbox.init({
 	players:["iframe"]
-});
+}); */
 $(function(){
-	$('#idBtn').click(function(){
+/* 	$('#idBtn').click(function(){
 		Shadowbox.open({
 			content:'member/idcheck.jsp',
 			title:'아이디 중복체크',
@@ -22,18 +28,77 @@ $(function(){
 			width:380,
 			height:200
 		});
+	}); */
+	$('#dialog').dialog({
+		autoOpen:false,
+		width:450,
+		height:250,
+		modal:true,
+		buttons:[
+			{
+				text:'중복체크',
+				click:function(){
+					
+					var id=$('#id').val();
+					/* alert("id="+id); */
+					if(id.trim()==""){
+						$('#id').focus();
+						return;
+					}
+					$.ajax({
+						type:'POST',
+						 url:'member/idcheck_result.jsp', 
+						data:{"id":id},
+						success:function(response){   
+		  					var count=response.trim();
+		  					/* alert(count); */
+							var data="";
+								if(count==0){
+									data=id+"는(은) 사용가능한 ID입니다.";
+									var html="<td align=center colspan=2><input type=button id=ok value=OK onclick=ok()></td>";
+									$('#ok').html(html);
+								}else{
+									data=id+"는(은) 이미 사용중인 ID입니다.";
+								}
+								$('#result').text(data);
+								/*
+									text() ==> getter
+									text("aaa") ==> setter
+								*/
+						}
+					});
+				}
+			},
+			{
+				text:'취소',
+				click:function(){
+					$(this).dialog("close");
+				}
+			}
+		]
+	
 	});
+	$('#idBtn').click(function(){
+		$('#dialog').dialog('open');
+	});
+
 $(function(){
 	$('#btnSub').click(function(){
 		if($('#userpwd').val()!=$('#userpwd1').val()){
 			alert("비밀번호와 비밀번호 재입력이 다릅니다.")
-			focus.password;
+			$('#userpwd').focus();
 			return false;
 		}
 	});
 });
 	
 });
+function ok(){
+	parent.joinForm.mem_id.value=$('#id').val();
+	jQuery('#dialog').dialog('close');
+
+	
+}
 </script>
 </head>
 <body>
@@ -92,6 +157,23 @@ $(function(){
 	    </p>
 	   </form>
 	  </div>
+	  </div>
+	  <div id="dialog" title="중복체크">
+	  	<table id="table_content" width=350>
+			<tr>
+				<td width=20% align=center>ID</td>
+				<td width=80% align=left>
+					<input type=text name=id size=20 id="id">
+					<!-- <input type=button value="중복체크" id="checkBtn"> -->
+				</td>
+			</tr>
+			<tr>
+				<td align=center id="result" colspan="2"></td>
+			</tr>
+			<tr id="ok">
+				
+			</tr>
+		</table>
 	  </div>
   </center>
 </body>

@@ -9,7 +9,7 @@ public class MapSearchModel {
 	
 	public void MapSearch(HttpServletRequest request)
 	{
-		request.setAttribute("asdfasdf", "MapSearch/Map_Main.jsp");
+		request.setAttribute("main_jsp", "MapSearch/Map_Main.jsp");
 	}
 	
 	

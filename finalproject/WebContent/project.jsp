@@ -3,8 +3,7 @@
 <jsp:useBean id="model" class="com.sist.change.MainController"/>
 <%
 	model.controller(request);
-%>
-<!-- 이게 떠야 됩니다 -->
+%> 
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
@@ -12,6 +11,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jqeury.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -82,7 +85,7 @@
     <div class="w3-dropdown-hover">  
       <button class="w3-button">이용후기</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="project.jsp?mode=200" class="w3-bar-item w3-button">신랑/신부 이용후기</a>
+        <a href="#" class="w3-bar-item w3-button">신랑/신부 이용후기</a>
         <a href="#" class="w3-bar-item w3-button">전문가 리뷰</a>
       </div>
     </div>
@@ -100,10 +103,10 @@
     <div class="w3-dropdown-hover">  
       <button class="w3-button">마이페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        
+        <a href="#" class="w3-bar-item w3-button">내 프로필</a>
         <a href="project.jsp?mode=105" class="w3-bar-item w3-button">예약페이지</a>
         <a href="project.jsp?mode=104" class="w3-bar-item w3-button">찜목록</a>
-        <a href="project.jsp?mode=3" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
+        <a href="project.jsp?mode=103" class="w3-bar-item w3-button">회원정보수정/탈퇴</a>
 
      </div>
     </div>
@@ -112,7 +115,7 @@
     <div class="w3-dropdown-hover">  
       <button class="w3-button">관리페이지</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="project.jsp?mode=5" class="w3-bar-item w3-button">회원관리</a>
+        <a href="#" class="w3-bar-item w3-button">회원관리</a>
         
       </div>
     </div>
@@ -123,8 +126,7 @@
 <!-- Page content -->
 	<div class="w3-content w3-padding" style="max-width:1300px">
 <!-- Project Section -->
-      <jsp:include page="${main_jsp }"></jsp:include>  
-    
+    <jsp:include page="${main_jsp }"></jsp:include>
 <!-- End page content -->
 </div>
 <!-- Footer -->

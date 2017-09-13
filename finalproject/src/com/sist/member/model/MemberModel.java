@@ -1,9 +1,7 @@
 
 package com.sist.member.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,10 +25,12 @@ public class MemberModel {
 	
 	  public void memberIdCheck(HttpServletRequest request)
 	  {
-		  String mem_id=request.getParameter("mem_id");
+		  String mem_id=request.getParameter("id");
 		  MemberDAO dao=new MemberDAO();
 		  int count=dao.memberIdcheck(mem_id);
 		  request.setAttribute("count", count);
+		  
+		  
 	  }
 	  
 	  public void mainContent(HttpServletRequest request) {
@@ -57,6 +57,7 @@ public class MemberModel {
 			  session.setAttribute("name", vo.getMem_name());
 			  session.setAttribute("admin", vo.getMem_type());
 			  session.setAttribute("birth", vo.getMem_birth());
+			  session.setAttribute("sex", vo.getMem_sex());
 		  
 		  }
 		  request.setAttribute("res", vo.getMsg());
@@ -102,36 +103,15 @@ public class MemberModel {
 			 MemberDAO dao =new MemberDAO();
 			 HttpSession session=request.getSession();			 
 			 String id =(String)session.getAttribute("id");			 
-			// List<ComVO> list = dao.memberLikeData(id);
-			 
-			 String strPage=request.getParameter("page");
-			 if(strPage==null)
-			 	strPage="1";
-			 int curpage=Integer.parseInt(strPage);
-	//		 Map map=new HashMap();
-			 int rowSize=5;
-			 int start=(curpage*rowSize)-(rowSize-1);
-			 int end=curpage*rowSize;
-			 /*map.put("start",start);
-			 map.put("end",end);*/
-			 
-			// List<ComVO> list=dao.boardAllData(map);
-			// request.setAttribute("list", list);
-			 
-			 List<ComVO> list = dao.memberLikeData(id,start,end);
-			 
-			 double a = dao.numMemberLikeData(id)/(double)rowSize; 
-			// double b = dao.numMemberLikeData(id)/rowSize;
-			 int totalpage = (int) Math.ceil(a);
-			 //System.out.println(totalpage);
+			 List<ComVO> list = dao.memberLikeData(id);
 			 request.setAttribute("hlist", list); 			  
-			 request.setAttribute("curpage", curpage);
-			 request.setAttribute("totalpage", totalpage);
+			 
+			 
 	 }
 	  public void memberDelete(HttpServletRequest request) {
 		  request.setAttribute("main_jsp", "member/mem_delete.jsp");
 	  }
-	  public void memberDeleteOk(HttpServletRequest request,HttpServletResponse response) {
+	  /*public void memberDeleteOk(HttpServletRequest request,HttpServletResponse response) {
 		  	String strId=request.getParameter("mem_id");
 			String pwd=request.getParameter("mem_pw");
 			MemberDAO dao=new MemberDAO();
@@ -140,12 +120,12 @@ public class MemberModel {
 				if(bCheck==true){
 					response.sendRedirect("../project.jsp");
 				}else{
-					response.sendRedirect("../main_content.jsp");		
+							
 			  }
 			}catch(Exception ex) {
 				System.out.println(ex.getMessage());
 			}
-	  }
+	  }*/
 	  public void admin(HttpServletRequest request) {
 		  MemberDAO dao=new MemberDAO();
 		  MemberVO vo=new MemberVO();
@@ -171,7 +151,20 @@ public class MemberModel {
 		  }catch(Exception ex) {
 			  System.out.println(ex.getMessage());
 		  }
-		  
 	  } 
-	
+	  public void memberIdSearch(HttpServletRequest request)
+	  {
+		  String mem_email=request.getParameter("email");
+		  MemberDAO dao=new MemberDAO();
+		  String data=dao.memberIdSearch(mem_email);
+		  request.setAttribute("data", data);
+	  }
+	  public void memberPwdSearch(HttpServletRequest request)
+	  {
+		  String mem_id=request.getParameter("id");
+		  String mem_name=request.getParameter("name");
+		  MemberDAO dao=new MemberDAO();
+		  String data=dao.memberPwdSearch(mem_id,mem_name);
+		  request.setAttribute("data", data);
+	  }
 }
