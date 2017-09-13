@@ -4,3 +4,4 @@
 <%
 	model.memberIdCheck(request);
 %>
+${count }

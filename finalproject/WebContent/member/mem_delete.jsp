@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
+    pageEncoding="EUC-KR" import="com.sist.member.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +10,10 @@
 <script type="text/javascript">
 $(function(){
 	$('#delBtn').click(function(){
+		var id=$('#userid').val();
 		var pwd=$('#userpwd').val();
 		/* alert(pwd); */
-		$('#delForm').submit();
+		 $('#delForm').submit(); 
 	});
 });
 </script>
@@ -21,9 +21,14 @@ $(function(){
 <body>
 <center>
 <div id="form">
-	<h3 id="tal">회원탈퇴</h3><br>
-	<span>회원 탈퇴를 할 수 있습니다. 다음 안내사항을 꼭 읽어주신 후 탈퇴하시기 바랍니다.</span>
-	<table id="table">
+	<table id="top" width=1100>
+		<tr>
+			<td id="subject">회원탈퇴</td>
+		</tr>
+	</table>
+	<br/>
+	<span id="sub">회원 탈퇴를 할 수 있습니다. 다음 안내사항을 꼭 읽어주신 후 탈퇴하시기 바랍니다.</span><br/><br/>
+	<table id="table" width=1100 height=300>
 		<tr>
 			<td><span>01.</span> 회원탈퇴 시, 고객님의 개인정보는 모두 삭제처리 됩니다.</td>
 		</tr>
@@ -38,13 +43,13 @@ $(function(){
 		</tr>
 		
 	</table>
-	<form id="delForm" action="member/mem_delete_ok.jsp" name="delForm" method="post">
+	 <form id="delForm" action="member/mem_delete_ok.jsp" name="delForm" method="post"> 
 	    <input type=hidden name=mem_id id="userid" value="${sessionScope.id }">
 	    비밀번호
-	    <input type=text name=mem_pw id="userpwd">
+	    <input type=password name=mem_pw id="userpwd">
 	    
 	    <input type=button id="delBtn" value="확인" style="text-decoration: none">
-    </form>
+    </form> 
 </div>    
 </center>
 </body>

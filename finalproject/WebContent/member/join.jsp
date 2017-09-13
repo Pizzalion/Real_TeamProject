@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/join.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="css/style4.css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-<style>
-@import "table.css"
-</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="shadow/css/shadowbox.css"> -->
@@ -102,63 +103,99 @@ function ok(){
 </script>
 </head>
 <body>
-<center>
-	<div id="news_area">
-	  <div id="wrapper1">
-	  <img src="images/logo.JPG">
-	  <h3>회원가입</h3><br>
-	   <form id="joinForm" action="member/join_ok.jsp" name="joinForm" method=POST>
-	    <p>
-	    <label for="userid">아이디</label>&nbsp;&nbsp;&nbsp;
-	    <input type=text name=mem_id id="userid" readonly required>
-	    <input type=button value="중복체크" id="idBtn">
-	    </p>
-	    <p>
-	    <label for="userpwd">비밀번호</label>
-	    <input type=password name=mem_pw id="userpwd" required>
-	    <input type=password name=pwd1 id="userpwd1" placeholder="재입력" required>
-	    </p>
-	    <p>
-	    <label for="username">이름</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    <input type=text name=mem_name id="username" required>
-	    </p>
-	    <p>
-	    <label for="usersex">성별</label>&nbsp;
-	    <input type=radio name=mem_sex value="남자" checked>남자
-	    <input type=radio name=mem_sex value="여자">여자
-	    </p>
-	    <p>
-	    <label for="userdate">생년월일</label>
-	    <input type=date name="mem_birth" id="userdate" required>
-	    </p>
-	    <p>
-	    <label for="useremail">이메일</label>&nbsp;&nbsp;&nbsp;
-	    <input type=text name="mem_email" id="useremail" required>
-	    </p>
-	
-	    <p>
-	    <label>전화</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    <span class="cellStyle">
-	     <select id="userPhone" name="mem_phone1">
-	      <option>010</option>
-	      <option>011</option>
-	      <option>017</option>
-	     </select>
-	     -
-	     <input type=text id="userPhone1" name="mem_phone2" required>
-	     -
-	     <input type=text id="userPhone2" name="mem_phone3" required>
-	    </span>
-	    </p>
-	    <p class="btnSubmit">
-	     <input type=submit id="btnSub" style="cursor:pointer" value="회원가입">
-	     <input type=button id="btnCan" style="cursor:pointer" value="가입취소"
+
+
+      <article class="container">
+        <div class="page-header">
+          <h1>회원가입 <small>Sign Up</small></h1>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+          <form id="joinForm" action="member/join_ok.jsp" name="joinForm" method=post>
+          <div class="form-group">
+              <label>ID</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="userid" name=mem_id placeholder="ID를 입력해주세요." readonly required>
+                <span class="input-group-btn">
+                <input type=button id="idBtn" class="btn btn-success" value="중복체크">
+                  <!-- <button id="idBtn" class="btn btn-success" value="중복체크">중복체크<i class="fa fa-mail-forward spaceLeft"></i></button> -->
+                </span>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label for="InputEmail">ID</label>
+              <input type="text" class="form-control" id="userid" name=mem_id placeholder="ID를 입력해주세요." style="width:80%" readonly required>
+              <input type=button id="idBtn" class="btn btn-success" value="중복체크" style="width:20%" style="float:right">
+            </div> -->
+            <div class="form-group">
+              <label>비밀번호</label>
+              <input type="password" class="form-control" id="userpwd" name=mem_pw placeholder="비밀번호" required>
+            </div>
+            <div class="form-group">
+              <label>비밀번호 확인</label>
+              <input type="password" class="form-control" id="userpwd1" name=pwd1 placeholder="비밀번호 확인" required>
+              <p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+            </div>
+            <div class="form-group">
+              <label>이름</label>
+              <input type="text" class="form-control" id="username" name=mem_name placeholder="이름을 입력해 주세요" required>
+            </div>
+            <div class="form-group">
+              <label>성별</label>&nbsp;
+              <input type=radio name=mem_sex value="남자" checked>남자
+	   		  <input type=radio name=mem_sex value="여자">여자
+            </div>
+            <div class="form-group">
+              <label>휴대폰</label>
+              <div class="input-group">
+              	<select id="userPhone" name="mem_phone1" class="form-control" style="width:30%">
+			      <option>010</option>
+			      <option>011</option>
+			      <option>017</option>
+			     </select>
+                <!-- <input type="tel" class="form-control" id="username" placeholder="- 없이 입력해 주세요" style="width:30%"> -->
+                <input type="text" id="userPhone1" name="mem_phone2" class="form-control" style="width:30%">
+                <input type="text" id="userPhone2" name="mem_phone3" class="form-control" style="width:30%">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" id="usermail" name=mem_email placeholder="Email을 입력해주세요." style="width:100%" required>
+            </div>
+            <div class="form-group">
+              <label>생년월일</label>
+              <input type="date" class="form-control" id="userdate" name=mem_birth required>
+            </div>
+            <label for="InputPassword1">* 다음은 비밀번호 찾기용 질문입니다.</label>
+            <div class="form-group">
+              <label>질문</label>
+              <div class="input-group">
+              	<select id="userQuestion" name="mem_question" class="form-control">
+			      <option>당신의 졸업한 초등학교의 이름은?</option>
+			      <option>가장 존경하는 인물은?</option>
+			      <option>가장 친한 친구의 이름은?</option>
+			      <option>가장 좋아하는 음식은?</option>
+			      <option>가장 친한 친구의 이름은?</option>
+			     </select>
+                
+              </div>
+            </div>
+            <div class="form-group">
+              <label>답변</label>
+              <input type="text" class="form-control" id="userAnswer" name=mem_answer placeholder="답변을 입력해주세요." required>
+            </div>
+            <div class="form-group text-center">
+            	<input type=submit id="btnSub" class="btn btn-info" style="cursor:pointer" value="회원가입">
+            	<input type=button id="btnCan" class="btn btn-warning" style="cursor:pointer" value="가입취소"
 	      onclick="javascript:history.back()">
-	    </p>
-	   </form>
-	  </div>
-	  </div>
-	  <div id="dialog" title="중복체크">
+              <!-- <button type="submit" id="btnSub" class="btn btn-info">회원가입<i class="fa fa-check spaceLeft"></i></button>
+              <button type="button" id="btnCan" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i></button> -->
+            </div>
+          </form>
+        </div>
+		
+        
+      </article>
+      <div id="dialog" title="중복체크">
 	  	<table id="table_content" width=350>
 			<tr>
 				<td width=20% align=center>ID</td>
@@ -175,6 +212,12 @@ function ok(){
 			</tr>
 		</table>
 	  </div>
-  </center>
-</body>
+      
+      
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    Include all compiled plugins (below), or include individual files as needed
+    <script src="js/bootstrap.min.js"></script> -->
+  </body>
 </html>

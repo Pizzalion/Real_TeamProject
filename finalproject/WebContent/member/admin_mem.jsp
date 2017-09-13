@@ -20,20 +20,17 @@
 	margin-right: 50px;
 	
 }
-/* #div span{
-	position: absolute;
-	top:1090px;
-	left:1530px;
-} */
+
 
 </style>
 <script>
-    function idDelete(delID){
+     function idDelete(delID){
        
         /* alert(delID); */
          location.href = "member/admin_delete.jsp?id=" + delID;    //get방식으로 삭제할아이디를 넘김
                
-    }
+    } 
+     
 </script>
 </head>
 <body>
@@ -59,7 +56,7 @@
 				<td width=200 align=center>${vo.mem_birth }</td>
 				<td width=250 align=center>${vo.mem_email }</td>
 				<td width=100 align=center>${vo.mem_type }</td>
-				<td id="img" width=100 align=center><img src="images/admin_del.png" style="cursor:pointer" value="삭제" onclick="idDelete('${vo.mem_id }');">
+				<td id="img" width=100 align=center><img src="images/admin_del.png" style="cursor:pointer" id="delete" onclick="idDelete('${vo.mem_id }');">
 				<%-- <input type=button style="cursor:pointer" value="삭제" onclick="idDelete('${vo.mem_id }');"> --%></td>
 				</tr>
 			 </c:forEach>
@@ -71,6 +68,7 @@
              <a href="project.jsp?mode=5&page=${curpage<totalpage?curpage+1:curpage }" class="page"><img src="images/next.png"></a>&nbsp;&nbsp;
              <span>${curpage } page / ${totalpage } pages</span>
             </div>
+
 	</center>
 </body>
 </html>
