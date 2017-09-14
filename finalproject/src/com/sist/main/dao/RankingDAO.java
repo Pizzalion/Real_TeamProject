@@ -169,7 +169,7 @@ public class RankingDAO {
 	}
 	
 	//===================================== 상세보기
-	public CompanyVO companyDetailData(int com_no) {
+	public CompanyVO rankingDetailData(int com_no) {
 		CompanyVO vo =new CompanyVO();
 		try {
 			getConnection();

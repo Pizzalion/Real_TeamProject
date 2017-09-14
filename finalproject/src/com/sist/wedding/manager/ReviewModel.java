@@ -19,13 +19,14 @@ public class ReviewModel {
 		page="1";
 	int curpage=Integer.parseInt(page);
 	
+	
+	
 	WeddingDAO dao=new WeddingDAO();
-	List<ReviewVO> rList=dao.reviewListData(curpage, 4);		
+	List<ReviewVO> rList=dao.reviewListData(curpage, 4,"img_no");		
 	int totalpage=dao.reviewTotalPage();
 	
 	
 	String com_no=request.getParameter("com_no");	
-	System.out.println(com_no);
 
 	request.setAttribute("rList", rList);
 	request.setAttribute("curpage", curpage);
@@ -38,13 +39,16 @@ public class ReviewModel {
 	
 	public void ReviewAllData(HttpServletRequest request) {
 		String page=request.getParameter("page");
+		//String revOrder=request.getParameter("rOrder");
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
-		WeddingDAO dao=new WeddingDAO();
-		List<ReviewVO> rAllList=dao.reviewListData(curpage, 10);
-		int totalpage=dao.reviewTotalPage();
 		
+		WeddingDAO dao=new WeddingDAO(); 
+		//com_no는 랭킹순, review_title 은 이름순, review_no는 최신순
+		List<ReviewVO> rAllList=dao.reviewListData(curpage, 10, "img_no");
+		int totalpage=dao.reviewTotalPage();
+	
 		request.setAttribute("rAllList", rAllList);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
@@ -82,6 +86,45 @@ public class ReviewModel {
 		request.setAttribute("main_jsp","/review/reviewDetail.jsp");
 	
 	}
-
 	
+	public void findReview(HttpServletRequest request) {
+		try {
+			WeddingDAO dao=new WeddingDAO();
+			request.setCharacterEncoding("EUC-KR");
+			String page=request.getParameter("page");
+			String ss=request.getParameter("ss");
+			//int count=dao.findCount(ss);
+			//String fs=request.getParameter("fs");
+			
+			ReviewVO vo =new ReviewVO();
+			System.out.println("값이 들어오나"+ss);
+			if(page==null)
+				page="1";
+			int curpage=Integer.parseInt(page);
+				
+			/*if(count>0) {
+				List<ReviewVO> flist = dao.findReview(curpage, 10, ss);
+				request.setAttribute("flist", flist);
+				System.out.println("여기서는"+ss);
+			}
+*/			List<ReviewVO> flist = dao.findReview(curpage, 10, ss);
+			request.setAttribute("ss", ss);
+			request.setAttribute("flist", flist);
+			int totalpage=dao.reviewTotalPage();
+			request.setAttribute("curpage", curpage);
+			request.setAttribute("totalpage", totalpage);
+			
+			//request.setAttribute("count", count);
+			/*request.setAttribute("vo", vo);*/
+			request.setAttribute("main_jsp", "/review/findResult.jsp");
+			
+			
+		}catch(Exception ex) {
+			System.out.println("findReview: "+ex.getMessage());
+		}
+	
+	
+	}
+
+
 }

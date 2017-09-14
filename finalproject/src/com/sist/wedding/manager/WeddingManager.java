@@ -119,7 +119,6 @@ public class WeddingManager {
 		  return list;
 	  }
 	  
-
 	 /* 홀정보 데이터 */
 		public List<InnerHallVO> innerHallData() {
 
@@ -262,6 +261,8 @@ public class WeddingManager {
 					  Element name=doc.select("div.est_hallname_box p").first();  //1.홀이름
 					  String eName=name.text().substring(0,name.text().indexOf("("));
 					  System.out.println(hNo+". :"+eName);
+					  Element totPrice=doc.select("td.total_price").first();
+					  System.out.println("  최종견적 금액 :" + totPrice.text() );
 					 try {
 					  for(int x=0; x<10; x++) {
 						  Element opName=doc.select("div.est_datalist_box table tr td").get(x*5);
@@ -269,26 +270,35 @@ public class WeddingManager {
 						  Element opPrice=doc.select("div.est_datalist_box table tr td").get(x*5+1);
 						  System.out.println("  가격"+ x +":"+opPrice.text());
 						  Element opChoice=doc.select("div.est_datalist_box table tr td").get(x*5+2);
-						  System.out.println("  비고 "+ x +":"+opChoice.text());
+						  System.out.println("  설명 "+ x +":"+opChoice.text());
 		
 						  Element opAbout=doc.select("div.est_datalist_box table tr td").get(x*5+4);
-						  System.out.println("  비고 "+ x +":"+opAbout.text());
-						   
+						  System.out.println("  내용 "+ x +":"+opAbout.text());
+						  
+						
+						
 						  OptVO vo= new OptVO();
 						  	vo.setCom_title(eName);
 						  	vo.setOpt_name(opName.text());
 						  	vo.setOpt_price(opPrice.text());
 						  	vo.setOpt_sel(opChoice.text());
 						  	vo.setOpt_con(opAbout.text());
-						  	vo.setCom_no(k);
+						  	vo.setTot_price(totPrice.text());
+						  	vo.setCom_no(hNo);
 						  	vo.setOpt_no(x);
+						  	vo.setHall_no(hNo);		
+						  	vo.setEsti_no(k);
+						  	
 						  	
 						  	list.add(vo);
 						  	k++;			  
 					  }
 					  }catch(Exception ex) {
 						  System.out.println("항목 없음");
+					
+						  
 					  }
+					 
 
 			  }
 			  }catch(Exception ex) {
@@ -296,5 +306,6 @@ public class WeddingManager {
 			  }
 			  return list;
 		  }
+
 
 }

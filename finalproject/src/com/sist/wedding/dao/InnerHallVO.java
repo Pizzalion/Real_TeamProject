@@ -9,38 +9,6 @@ public class InnerHallVO {
 	private String hall_people; //보증인원
 	private String hall_time; //예식간격
 	private int com_no; //업체 번호(comm_tb 의 pk)
-	
-	private String com_name; //업체이름
-	private String com_pic;//업체사진
-	public String getCom_name() {
-		return com_name;
-	}
-	public void setCom_name(String com_name) {
-		this.com_name = com_name;
-	}
-	public String getCom_pic() {
-		return com_pic;
-	}
-	public void setCom_pic(String com_pic) {
-		this.com_pic = com_pic;
-	}
-	public String getCom_address() {
-		return com_address;
-	}
-	public void setCom_address(String com_address) {
-		this.com_address = com_address;
-	}
-	public String getCom_meal() {
-		return com_meal;
-	}
-	public void setCom_meal(String com_meal) {
-		this.com_meal = com_meal;
-	}
-	private String com_address;//업체주소
-	private String com_meal;//식사비용
-	
-	
-	
 	public int getHall_no() {
 		return hall_no;
 	}
